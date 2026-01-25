@@ -141,7 +141,7 @@ export const COMPANIES: CompanyData[] = [
     website: "https://dairy.onhand.in/Account/LogOn?ReturnUrl=%2F",
     tags: ["CRM", "POS", "Web", "Mobile"],
     intro:
-  "OnHand Solutions is a digital platform company building practical software products for business operations and hiring workflows, where I worked as a freelance UX designer.",
+  "OnHand Solutions is a digital platform company building practical software products for business operations and hiring workflows.",
 
 highlights: [
   "Improved the job search and hiring experience by refining navigation, layouts, and information hierarchy.",

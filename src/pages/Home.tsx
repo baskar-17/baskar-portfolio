@@ -20,7 +20,7 @@ export default function Home() {
         <section id="companies" className="py-12 md:py-16">
           <h2 className="text-3xl font-semibold">Places I’ve been part of</h2>
           <p className="mt-2 text-sm md:text-base text-[var(--muted)] max-w-2xl">
-            Quick snapshots of the teams I’ve worked with — tap a card to see what I did there.
+            Quick snapshots of the teams I’ve worked with — deeper context lives in each project case study.
           </p>
 
           <CompaniesCards items={COMPANIES} />

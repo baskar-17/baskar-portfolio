@@ -11,7 +11,7 @@ export default function CompaniesIndex() {
         Companies
       </h1>
       <p className="mt-3 text-neutral-600 max-w-2xl">
-        A quick look at the places I’ve worked and what I built there.
+        A quick look at the places I’ve worked and the roles I held.
       </p>
 
       <CompaniesCards items={COMPANIES} />
