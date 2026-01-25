@@ -42,7 +42,7 @@ export default function CompaniesCards({ items }: { items: CompanyData[] }) {
             href={c.website}
             target="_blank"
             rel="noreferrer"
-            className="group relative block rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 transition hover:shadow-[0_14px_30px_rgba(20,20,20,0.08)]"
+            className="group relative block rounded-3xl border border-white/70 bg-white/90 p-6 shadow-[0_18px_40px_rgba(40,24,16,0.12)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_rgba(40,24,16,0.16)] backdrop-blur"
           >
             <div className="flex items-start gap-4">
               <Logo company={c.company} logoSrc={c.logoSrc} />

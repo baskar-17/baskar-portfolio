@@ -8,7 +8,7 @@ export default function WorkCards({ items }: { items: WorkItem[] }) {
         <Link
           key={item.slug}
           to={`/work/${item.slug}`}
-          className="group flex flex-col gap-4 rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 transition hover:shadow-[0_12px_30px_rgba(16,16,16,0.08)]"
+          className="group flex flex-col gap-4 rounded-3xl border border-white/70 bg-white/90 p-4 shadow-[0_18px_40px_rgba(40,24,16,0.12)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_rgba(40,24,16,0.16)] backdrop-blur"
           aria-label={`${item.title} project`}
         >
           <div className="rounded-2xl overflow-hidden border border-[color:var(--border)] bg-[color:var(--surface-muted)]">
