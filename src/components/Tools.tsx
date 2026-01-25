@@ -3,23 +3,26 @@ type ToolItem = {
   imageSrc: string
 }
 
+const withBase = (path: string) =>
+  `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`
+
 const TOOLS: ToolItem[] = [
-  { name: "Figma", imageSrc: "/tools/figma.png" },
-  { name: "Miro", imageSrc: "/tools/miro.png" },
-  { name: "Webflow", imageSrc: "/tools/webflow.png" },
-  { name: "Notion", imageSrc: "/tools/notion.png" },
-  { name: "Lyssna", imageSrc: "/tools/lyssna.png" },
-  { name: "SurveyMonkey", imageSrc: "/tools/surveymonkey.png" },
-  { name: "HotJar", imageSrc: "/tools/hotjar.png" },
-  { name: "Atlassian", imageSrc: "/tools/atlassian.png" },
-  { name: "Photoshop", imageSrc: "/tools/photoshop.png" },
-  { name: "Illustrator", imageSrc: "/tools/illustrator.png" },
-  { name: "AfterEffects", imageSrc: "/tools/after-effects.png" },
-  { name: "Claude", imageSrc: "/tools/claude.png" },
-  { name: "ChatGPT", imageSrc: "/tools/chatgpt.png" },
-  { name: "Lovable", imageSrc: "/tools/loveable.png" },
-  { name: "HTML", imageSrc: "/tools/html.png" },
-  { name: "CSS", imageSrc: "/tools/css.png" },
+  { name: "Figma", imageSrc: withBase("/tools/figma.png") },
+  { name: "Miro", imageSrc: withBase("/tools/miro.png") },
+  { name: "Webflow", imageSrc: withBase("/tools/webflow.png") },
+  { name: "Notion", imageSrc: withBase("/tools/notion.png") },
+  { name: "Lyssna", imageSrc: withBase("/tools/lyssna.png") },
+  { name: "SurveyMonkey", imageSrc: withBase("/tools/surveymonkey.png") },
+  { name: "HotJar", imageSrc: withBase("/tools/hotjar.png") },
+  { name: "Atlassian", imageSrc: withBase("/tools/atlassian.png") },
+  { name: "Photoshop", imageSrc: withBase("/tools/photoshop.png") },
+  { name: "Illustrator", imageSrc: withBase("/tools/illustrator.png") },
+  { name: "AfterEffects", imageSrc: withBase("/tools/after-effects.png") },
+  { name: "Claude", imageSrc: withBase("/tools/claude.png") },
+  { name: "ChatGPT", imageSrc: withBase("/tools/chatgpt.png") },
+  { name: "Lovable", imageSrc: withBase("/tools/loveable.png") },
+  { name: "HTML", imageSrc: withBase("/tools/html.png") },
+  { name: "CSS", imageSrc: withBase("/tools/css.png") },
  
 ]
 
