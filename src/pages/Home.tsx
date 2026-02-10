@@ -10,17 +10,17 @@ import { COMPANIES } from "../data/companies"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[var(--page-bg)] text-[var(--ink)]">
+    <div className="min-h-screen text-[var(--ink)]">
       <Header />
 
       <main className="w-full pb-28 md:pb-24">
         <Hero />
-        <div className="mx-auto max-w-[1200px] px-5 md:px-10">
+        <div className="mx-auto max-w-[1200px] px-4">
           <WorkSection />
 
-          <section id="companies" className="py-12 md:py-16">
-            <h2 className="text-3xl font-semibold">Places I’ve been part of</h2>
-            <p className="mt-2 text-sm md:text-base text-[var(--muted)] max-w-2xl">
+          <section id="companies" className="py-16 md:py-24 reveal">
+            <h2 className="section-title">Places I’ve been part of</h2>
+            <p className="mt-2 text-sm md:text-base section-lead">
               Quick snapshots of the teams I’ve worked with — deeper context lives in each project case study.
             </p>
 

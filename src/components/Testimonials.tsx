@@ -59,11 +59,11 @@ export default function Testimonials() {
     setIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
 
   return (
-    <section className="py-12 md:py-16">
+    <section className="py-16 md:py-24 reveal">
       <div className="text-left">
-        <h2 className="text-3xl font-semibold">What people say</h2>
-        <p className="mt-2 text-sm md:text-base text-[var(--muted)] max-w-2xl">
-          A few notes from teammates and partners I’ve collaborated with.
+        <h2 className="section-title">What people say</h2>
+        <p className="mt-2 text-sm md:text-base section-lead">
+          A few notes from teammates and partners I've collaborated with.
         </p>
       </div>
 
@@ -71,7 +71,7 @@ export default function Testimonials() {
         {ordered.map((item, position) => (
           <motion.div
             key={item.name}
-            className="absolute left-1/2 w-full max-w-[560px] -translate-x-1/2 rounded-[28px] border border-[color:var(--border)] bg-white p-7 shadow-[0_20px_50px_rgba(40,24,16,0.14)]"
+            className="absolute left-1/2 w-full max-w-[560px] -translate-x-1/2 rounded-[28px] border border-[color:var(--border)] bg-[color:var(--surface)] p-7 shadow-[var(--shadow-soft)]"
             style={{ zIndex: 4 - position }}
             animate={{
               y: position * offsets.y,
@@ -82,7 +82,7 @@ export default function Testimonials() {
             transition={{ type: "spring", stiffness: 220, damping: 24 }}
           >
             <p className="text-sm md:text-base text-[var(--ink)] leading-relaxed">
-              “{item.quote}”
+              "{item.quote}"
             </p>
             <div className="mt-6 flex items-center gap-3">
               <div className="h-12 w-12 rounded-full bg-[var(--surface-muted)] flex items-center justify-center text-sm font-semibold text-[var(--muted)]">
@@ -108,7 +108,7 @@ export default function Testimonials() {
           type="button"
           onClick={handlePrev}
           aria-label="Show previous testimonial"
-          className="h-11 w-11 rounded-full border border-white/70 bg-white/90 shadow-[0_12px_24px_rgba(40,24,16,0.12)] transition hover:-translate-y-0.5"
+          className="h-11 w-11 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--shadow-soft)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-strong)] text-[var(--ink)]"
         >
           ←
         </button>
@@ -116,7 +116,7 @@ export default function Testimonials() {
           type="button"
           onClick={handleNext}
           aria-label="Show next testimonial"
-          className="h-11 w-11 rounded-full border border-white/70 bg-white/90 shadow-[0_12px_24px_rgba(40,24,16,0.12)] transition hover:-translate-y-0.5"
+          className="h-11 w-11 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--shadow-soft)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-strong)] text-[var(--ink)]"
         >
           →
         </button>

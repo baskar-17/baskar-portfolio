@@ -14,7 +14,7 @@ function Logo({ company, logoSrc }: { company: string; logoSrc?: string }) {
       <img
         src={logoSrc}
         alt={`${company} logo`}
-        className="h-12 w-12 rounded-xl object-cover border border-[color:var(--border)] bg-white"
+        className="h-12 w-12 rounded-xl object-cover border border-[color:var(--border)] bg-[color:var(--surface)]"
         loading="lazy"
       />
     )
@@ -42,7 +42,7 @@ export default function CompaniesCards({ items }: { items: CompanyData[] }) {
             href={c.website}
             target="_blank"
             rel="noreferrer"
-            className="group relative block rounded-3xl border border-white/70 bg-white/90 p-6 shadow-[0_18px_40px_rgba(40,24,16,0.12)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_rgba(40,24,16,0.16)] backdrop-blur"
+            className="group relative block rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-glass)] p-6 shadow-[var(--shadow-soft)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[var(--shadow-strong)] backdrop-blur"
           >
             <div className="flex items-start gap-4">
               <Logo company={c.company} logoSrc={c.logoSrc} />

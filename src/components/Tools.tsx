@@ -23,17 +23,17 @@ const TOOLS: ToolItem[] = [
   { name: "Lovable", imageSrc: withBase("/tools/loveable.png") },
   { name: "HTML", imageSrc: withBase("/tools/html.png") },
   { name: "CSS", imageSrc: withBase("/tools/css.png") },
- 
+
 ]
 
 export default function Tools() {
   return (
     <div className="mt-8">
-      <h3 className="text-lg font-semibold">Tools</h3>
+      <h3 className="text-lg font-semibold text-[var(--ink)]">Tools</h3>
       <div className="mt-4 flex flex-wrap gap-3">
         {TOOLS.map((tool) => (
           <div key={tool.name} className="group relative">
-            <div className="h-11 w-11 rounded-xl overflow-hidden border border-[color:var(--border)] bg-white shadow-[0_10px_20px_rgba(20,20,20,0.04)]">
+            <div className="h-11 w-11 rounded-xl overflow-hidden border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--shadow-soft)]">
               <img
                 src={tool.imageSrc}
                 alt={tool.name}
@@ -41,7 +41,7 @@ export default function Tools() {
                 loading="lazy"
               />
             </div>
-            <span className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-3 opacity-0 scale-95 group-hover:-translate-y-6 group-hover:opacity-100 group-hover:scale-100 transition text-[11px] font-semibold text-white bg-black px-2.5 py-1 rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.25)]">
+            <span className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-3 opacity-0 scale-95 group-hover:-translate-y-6 group-hover:opacity-100 group-hover:scale-100 transition text-[11px] font-semibold text-white bg-[var(--ink)] px-2.5 py-1 rounded-full shadow-[var(--shadow-strong)]">
               {tool.name}
             </span>
           </div>

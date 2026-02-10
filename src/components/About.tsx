@@ -45,7 +45,7 @@ const PRINCIPLES: Principle[] = [
   {
     title: "Kaizen (small wins)",
     description:
-      "I don’t chase perfection in one go. I ship, learn, and improve — one iteration at a time.",
+      "I don't chase perfection in one go. I ship, learn, and improve — one iteration at a time.",
     icon: <FiZap className="text-2xl" />,
   },
   {
@@ -57,41 +57,41 @@ const PRINCIPLES: Principle[] = [
   {
     title: "Clarity over clever",
     description:
-      "If it’s not instantly understandable, it’s not done. I prefer clean hierarchy, obvious actions, and calm layouts.",
+      "If it's not instantly understandable, it's not done. I prefer clean hierarchy, obvious actions, and calm layouts.",
     icon: <FiCheckCircle className="text-2xl" />,
   },
   {
     title: "Details create trust",
     description:
-      "Spacing, typography, microcopy, states — small details make the product feel reliable and “well made.”",
+      "Spacing, typography, microcopy, states — small details make the product feel reliable and \"well made.\"",
     icon: <FiAperture className="text-2xl" />,
   },
 ]
 
 export default function About() {
   return (
-    <section id="about" className="py-12 md:py-16">
-      <h2 className="text-3xl font-semibold">A bit about me</h2>
+    <section id="about" className="py-16 md:py-24 reveal">
+      <h2 className="section-title">A bit about me</h2>
 
       <div className="mt-4 max-w-3xl space-y-8">
         <p className="text-[var(--muted)] leading-relaxed">
-          I’m a UX designer who enjoys solving real problems — not just making
-          screens look nice. I’ve worked across web and mobile products, and I’m happiest when
-          I’m simplifying complex workflows into something that feels obvious
+          I'm a UX designer who enjoys solving real problems — not just making
+          screens look nice. I've worked across web and mobile products, and I'm happiest when
+          I'm simplifying complex workflows into something that feels obvious
           to the user. I care a lot about clear UX, practical design systems, and smooth
-          handoffs with developers. If a design looks great but can’t be built
-          well — I’m not satisfied.
+          handoffs with developers. If a design looks great but can't be built
+          well — I'm not satisfied.
         </p>
       </div>
 
       <div className="mt-10">
-        <h3 className="text-lg font-semibold">Design process</h3>
+        <h3 className="text-lg font-semibold text-[var(--ink)]">Design process</h3>
         <div className="mt-4">
           <div className="relative hidden sm:grid grid-cols-5 gap-6 text-xs text-[var(--muted)]">
             <div className="absolute left-0 right-0 top-5 h-[2px] bg-[color:var(--border)]" />
             {PROCESS_STEPS.map((step, index) => (
               <div key={step.title} className="relative z-10 flex flex-col items-start">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent)] text-white font-semibold shadow-[0_10px_20px_rgba(225,97,45,0.35)]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent)] text-white font-semibold shadow-[0_4px_12px_rgba(26,115,232,0.3)]">
                   {index + 1}
                 </div>
                 <div className="mt-3 text-sm font-semibold text-[var(--ink)]">
@@ -148,8 +148,8 @@ export default function About() {
 
       {/* ✅ Design Principles (added inside the same About section) */}
       <div className="mt-12 md:mt-16">
-        <h3 className="text-lg font-semibold">Design principles I follow</h3>
-        <p className="mt-2 text-sm md:text-base text-[var(--muted)] max-w-2xl">
+        <h3 className="text-lg font-semibold text-[var(--ink)]">Design principles I follow</h3>
+        <p className="mt-2 text-sm md:text-base section-lead">
           These are the small rules I come back to when decisions get messy — they keep
           my work grounded and consistent.
         </p>
@@ -158,10 +158,10 @@ export default function About() {
           {PRINCIPLES.map((p) => (
             <div
               key={p.title}
-              className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 transition hover:shadow-[0_14px_30px_rgba(20,20,20,0.06)]"
+              className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 transition hover:shadow-[var(--shadow-strong)]"
             >
-              <div className="text-neutral-900">{p.icon}</div>
-              <div className="mt-4 text-lg font-semibold">{p.title}</div>
+              <div className="text-[var(--accent)]">{p.icon}</div>
+              <div className="mt-4 text-lg font-semibold text-[var(--ink)]">{p.title}</div>
               <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
                 {p.description}
               </p>

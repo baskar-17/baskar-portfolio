@@ -1,20 +1,22 @@
 export default function Header() {
   return (
     <>
-      <header className="sticky top-0 z-50 hidden lg:block bg-[#f8f5ef]/90 backdrop-blur border-b border-[color:var(--border)] shadow-[0_8px_20px_rgba(22,22,22,0.04)]">
-        <div className="mx-auto max-w-[1200px] px-5 md:px-6 py-4 flex items-center justify-between">
-          <div className="font-semibold tracking-tight text-[var(--ink)]">Baskar</div>
+      <header className="sticky top-0 z-50 hidden lg:block">
+        <div className="mx-auto max-w-[1200px] px-4 py-4">
+          <div className="flex items-center justify-between rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] px-6 py-3 shadow-[var(--shadow-soft)]">
+            <div className="font-semibold tracking-tight text-[var(--ink)]">Baskar</div>
 
-          <nav className="text-sm flex items-center gap-4 text-[var(--muted)]">
-            <a className="hover:text-[var(--ink)] transition" href="#work">Projects</a>
-            <a className="hover:text-[var(--ink)] transition" href="#companies">Companies</a>
-            <a className="hover:text-[var(--ink)] transition" href="#about">About</a>
-            <a className="hover:text-[var(--ink)] transition" href="#contact">Contact</a>
-          </nav>
+            <nav className="text-sm flex items-center gap-5 text-[var(--muted)]">
+              <a className="hover:text-[var(--ink)] transition" href="#work">Projects</a>
+              <a className="hover:text-[var(--ink)] transition" href="#companies">Companies</a>
+              <a className="hover:text-[var(--ink)] transition" href="#about">About</a>
+              <a className="hover:text-[var(--ink)] transition" href="#contact">Contact</a>
+            </nav>
+          </div>
         </div>
       </header>
 
-      <nav className="fixed bottom-4 left-1/2 z-50 w-[calc(100%-2.5rem)] -translate-x-1/2 rounded-2xl border border-white/70 bg-white/90 px-3 py-3 shadow-[0_18px_40px_rgba(40,24,16,0.18)] backdrop-blur lg:hidden">
+      <nav className="fixed bottom-4 left-1/2 z-50 w-[calc(100%-2.5rem)] -translate-x-1/2 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-glass)] px-3 py-3 shadow-[var(--shadow-strong)] backdrop-blur lg:hidden">
         <div className="grid grid-cols-4 gap-2 text-[10px] text-[var(--muted)]">
           <a
             href="#work"

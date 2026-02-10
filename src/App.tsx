@@ -4,6 +4,7 @@ import CaseStudy from "./pages/CaseStudy"
 import CompaniesIndex from "./pages/CompaniesIndex"
 import CompanyPage from "./pages/CompanyPage"
 import NotFound from "./pages/NotFound"
+import CaseStudyDemo from "./pages/case-studies/CaseStudyDemo"
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
 
       {/* Case studies */}
       <Route path="/work/:slug" element={<CaseStudy />} />
+      <Route path="/case-studies/demo" element={<CaseStudyDemo />} />
 
       {/* Companies */}
       <Route path="/companies" element={<CompaniesIndex />} />
