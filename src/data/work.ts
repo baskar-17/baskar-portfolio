@@ -16,6 +16,9 @@ export type WorkItem = {
     userFlows: string[]
     informationArchitecture: string[]
     designJourney: string[]
+    decisions?: { title: string; detail: string; tradeoff?: string }[]
+    finalDesigns?: { title: string; caption: string }[]
+    learnings?: string[]
     outcomes: string[]
   }
 }

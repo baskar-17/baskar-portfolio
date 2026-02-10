@@ -81,6 +81,9 @@ export default function CaseStudy() {
 
   const goals = project.caseStudy.goals
   const personas = project.caseStudy.personas
+  const decisions = project.caseStudy.decisions ?? []
+  const finalDesigns = project.caseStudy.finalDesigns ?? []
+  const learnings = project.caseStudy.learnings ?? []
   const insights = personas.flatMap((persona) =>
     persona.painPoints.map((point) => ({
       title: persona.name,
@@ -202,7 +205,7 @@ export default function CaseStudy() {
 
       <Section id="decisions" title="Design Decisions">
         <div className="space-y-4">
-          {project.caseStudy.decisions.map((decision) => (
+          {decisions.map((decision) => (
             <div
               key={decision.title}
               className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 text-sm text-[var(--muted)] leading-relaxed shadow-[var(--shadow-soft)]"
@@ -229,7 +232,7 @@ export default function CaseStudy() {
 
       <Section id="final-designs" title="Final Designs">
         <Gallery
-          items={project.caseStudy.finalDesigns.map((item) => ({
+          items={finalDesigns.map((item) => ({
             title: item.title,
             caption: item.caption,
           }))}
@@ -251,7 +254,7 @@ export default function CaseStudy() {
 
       <Section id="learnings" title="Learnings">
         <div className="space-y-4 text-[var(--muted)] leading-relaxed">
-          {project.caseStudy.learnings.map((learning) => (
+          {learnings.map((learning) => (
             <p key={learning}>{learning}</p>
           ))}
         </div>
