@@ -19,9 +19,9 @@ export default function Home() {
           <WorkSection />
 
           <section id="companies" className="py-16 md:py-24 reveal">
-            <h2 className="section-title">Places I’ve been part of</h2>
+            <h2 className="section-title">Teams I have worked with</h2>
             <p className="mt-2 text-sm md:text-base section-lead">
-              Quick snapshots of the teams I’ve worked with — deeper context lives in each project case study.
+              Companies where I contributed as a UI/UX or product designer across discovery, execution, and delivery.
             </p>
 
             <CompaniesCards items={COMPANIES} />

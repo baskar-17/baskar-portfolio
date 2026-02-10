@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom"
+import { useEffect } from "react"
+import { useLocation, useParams } from "react-router-dom"
 import CaseStudyShell from "../components/case-study/CaseStudyShell"
 import Section from "../components/case-study/Section"
 import ProblemCards from "../components/case-study/ProblemCards"
@@ -25,6 +26,7 @@ const NAV_ITEMS = [
 
 export default function CaseStudy() {
   const { slug } = useParams()
+  const location = useLocation()
   const project = WORK_ITEMS.find((p) => p.slug === slug)
   const companySlug =
     project?.slug === "onhand-pos" || project?.slug === "onhand-dairy"
@@ -50,6 +52,20 @@ export default function CaseStudy() {
         tags: ["Product Design"],
       }
     : null
+
+  useEffect(() => {
+    const state = location.state as { preserveScrollPosition?: boolean } | null
+    const shouldPreserve = Boolean(state?.preserveScrollPosition)
+
+    if (shouldPreserve) {
+      const savedY = Number(sessionStorage.getItem("portfolio:homeScrollY") ?? "0")
+      window.scrollTo({ top: Number.isFinite(savedY) ? savedY : 0, behavior: "auto" })
+      sessionStorage.removeItem("portfolio:homeScrollY")
+      return
+    }
+
+    window.scrollTo({ top: 0, behavior: "auto" })
+  }, [slug, location.state])
 
   if (!project) {
     return (

@@ -43,27 +43,27 @@ const PROCESS_STEPS: ProcessStep[] = [
 
 const PRINCIPLES: Principle[] = [
   {
-    title: "Kaizen (small wins)",
+    title: "Small steps, consistently",
     description:
-      "I don't chase perfection in one go. I ship, learn, and improve — one iteration at a time.",
+      "I try not to force perfection in one pass. I move in small iterations and keep improving.",
     icon: <FiZap className="text-2xl" />,
   },
   {
-    title: "Humans, not users",
+    title: "People first",
     description:
-      "I design with empathy. Real people are busy, distracted, and emotional — the UI should help, not demand effort.",
+      "People are usually busy and under pressure. The interface should support them, not test them.",
     icon: <FiHeart className="text-2xl" />,
   },
   {
-    title: "Clarity over clever",
+    title: "Clarity over novelty",
     description:
-      "If it's not instantly understandable, it's not done. I prefer clean hierarchy, obvious actions, and calm layouts.",
+      "If someone has to decode the UI, I have not done enough. Clear hierarchy and obvious actions matter most.",
     icon: <FiCheckCircle className="text-2xl" />,
   },
   {
-    title: "Details create trust",
+    title: "Details build trust",
     description:
-      "Spacing, typography, microcopy, states — small details make the product feel reliable and \"well made.\"",
+      "Spacing, microcopy, and interaction states are small things, but they shape how reliable a product feels.",
     icon: <FiAperture className="text-2xl" />,
   },
 ]
@@ -75,17 +75,14 @@ export default function About() {
 
       <div className="mt-4 max-w-3xl space-y-8">
         <p className="text-[var(--muted)] leading-relaxed">
-          I'm a UX designer who enjoys solving real problems — not just making
-          screens look nice. I've worked across web and mobile products, and I'm happiest when
-          I'm simplifying complex workflows into something that feels obvious
-          to the user. I care a lot about clear UX, practical design systems, and smooth
-          handoffs with developers. If a design looks great but can't be built
-          well — I'm not satisfied.
+          I am a UI/UX designer with experience across product features, design systems, and delivery.
+          Most of my work sits at the intersection of user needs, business goals, and engineering constraints.
+          I focus on making decisions clear, documenting intent, and helping teams ship with confidence.
         </p>
       </div>
 
       <div className="mt-10">
-        <h3 className="text-lg font-semibold text-[var(--ink)]">Design process</h3>
+        <h3 className="text-lg font-semibold text-[var(--ink)]">How I usually work</h3>
         <div className="mt-4">
           <div className="relative hidden sm:grid grid-cols-5 gap-6 text-xs text-[var(--muted)]">
             <div className="absolute left-0 right-0 top-5 h-[2px] bg-[color:var(--border)]" />
@@ -148,10 +145,9 @@ export default function About() {
 
       {/* ✅ Design Principles (added inside the same About section) */}
       <div className="mt-12 md:mt-16">
-        <h3 className="text-lg font-semibold text-[var(--ink)]">Design principles I follow</h3>
+        <h3 className="text-lg font-semibold text-[var(--ink)]">A few principles I come back to</h3>
         <p className="mt-2 text-sm md:text-base section-lead">
-          These are the small rules I come back to when decisions get messy — they keep
-          my work grounded and consistent.
+          These principles help me stay consistent across discovery, design, and handoff.
         </p>
 
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

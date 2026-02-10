@@ -4,9 +4,9 @@ import { FiMail, FiPhone } from "react-icons/fi"
 export default function Contact() {
   return (
     <section id="contact" className="py-16 md:py-24 reveal">
-      <h2 className="section-title">Let's talk</h2>
+      <h2 className="section-title">Contact</h2>
       <p className="mt-2 text-sm md:text-base section-lead">
-        Got a role, a project, or just want to say hi? I'm always open to a good conversation.
+        If you are hiring for a Senior UI/UX Designer, Product Designer, or similar role, I would be glad to connect.
       </p>
 
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -61,16 +61,15 @@ export default function Contact() {
         </div>
 
         <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 transition hover:shadow-[var(--shadow-strong)]">
-          <div className="font-semibold text-[var(--ink)]">Quick note</div>
+          <div className="font-semibold text-[var(--ink)]">A small note</div>
           <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
-            If you're messaging about a role, sharing the location + timeline helps a lot.
-            Either way, I'll get back to you.
+            If you are reaching out about a role, sharing team context, expectations, and timeline helps me respond faster.
           </p>
 
           <div className="mt-6 rounded-xl bg-[color:var(--surface-muted)] p-4">
-            <div className="text-sm font-semibold text-[var(--ink)]">Open to</div>
+            <div className="text-sm font-semibold text-[var(--ink)]">Current focus</div>
             <p className="mt-1 text-sm text-[var(--muted)]">
-              Product / UX roles, freelance projects, and fun collaborations.
+              Senior product design roles with strong cross-functional collaboration.
             </p>
           </div>
         </div>

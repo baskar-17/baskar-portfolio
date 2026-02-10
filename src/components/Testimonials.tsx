@@ -1,20 +1,20 @@
-import { useEffect, useMemo, useState } from "react"
-import { motion } from "framer-motion"
+import { useEffect, useMemo, useState, type KeyboardEventHandler } from "react"
+import { motion, useReducedMotion } from "framer-motion"
 
 const TESTIMONIALS = [
   {
-    name: "Arjun Menon",
+    name: "Niko Polydorou",
     role: "Product Manager",
     company: "SportsGravy",
     quote:
-      "Baskar brings clarity to messy problems. He mapped the flows fast, validated them with users, and delivered UI that engineers could ship without constant back-and-forth.",
+      "It has been excellent to watch Baskar learn and accomplish so much over the past year. He has successfully transitioned from a pure Ul focus to a broader role, assisting with requirements gathering as I shift toward sales and marketing. Baskar is a highly talented Ul designer who knows Figma inside and out; his ability to organize screens and build components into scalable files has been incredible for the team. Additionally, his willingness to learn, his flexibility, and his dedication to putting in extra hours when necessary have been evident from day one.",
   },
   {
     name: "Priya Shah",
     role: "Founder",
     company: "MyKinderPass",
     quote:
-      "He helped us turn a complex childcare journey into something parents could trust. The structure, tone, and UI decisions made our product feel calm and credible. Baskar brings clarity to messy problems. He mapped the flows fast, validated them with users, and delivered UI that engineers could ship without constant back-and-forth Baskar brings clarity to messy problems. He mapped the flows fast, validated them with users, and delivered UI that engineers could ship without constant back-and-forth Baskar brings clarity to messy problems. He mapped the flows fast, validated them with users, and delivered UI that engineers could ship without constant back-and-forth",
+      "He helped us simplify a complex childcare journey. The final flows felt calm, structured, and easier for parents to trust.",
   },
   {
     name: "Karan Patel",
@@ -41,7 +41,9 @@ function useMediaQuery(query: string) {
 
 export default function Testimonials() {
   const [index, setIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
   const isMobile = useMediaQuery("(max-width: 768px)")
+  const shouldReduceMotion = useReducedMotion()
 
   const ordered = useMemo(
     () =>
@@ -50,36 +52,69 @@ export default function Testimonials() {
   )
 
   const offsets = isMobile
-    ? { y: 18, scaleStep: 0.035, rotate: 1.5 }
-    : { y: 24, scaleStep: 0.045, rotate: 2.5 }
+    ? { y: 14, scaleStep: 0.028 }
+    : { y: 18, scaleStep: 0.035 }
 
-  const handleNext = () =>
-    setIndex((prev) => (prev + 1) % TESTIMONIALS.length)
-  const handlePrev = () =>
-    setIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
+  const handleNext = () => setIndex((prev) => (prev + 1) % TESTIMONIALS.length)
+  const handlePrev = () => setIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
+
+  useEffect(() => {
+    if (shouldReduceMotion || isPaused) return
+    const timer = window.setInterval(() => {
+      setIndex((prev) => (prev + 1) % TESTIMONIALS.length)
+    }, 5500)
+    return () => window.clearInterval(timer)
+  }, [shouldReduceMotion, isPaused])
+
+  const onKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+    if (event.key === "ArrowRight") handleNext()
+    if (event.key === "ArrowLeft") handlePrev()
+  }
 
   return (
     <section className="py-16 md:py-24 reveal">
       <div className="text-left">
-        <h2 className="section-title">What people say</h2>
+        <h2 className="section-title">From the Teams I’ve Collaborated With</h2>
         <p className="mt-2 text-sm md:text-base section-lead">
-          A few notes from teammates and partners I've collaborated with.
+          A few notes from owners, product and engineering people I have worked with.
         </p>
       </div>
 
-      <div className="mt-10 relative min-h-[360px] md:min-h-[420px] mx-auto w-full max-w-[620px]">
+      <div
+        className="mt-10 relative min-h-[360px] md:min-h-[420px] mx-auto w-full max-w-[620px]"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onFocusCapture={() => setIsPaused(true)}
+        onBlurCapture={() => setIsPaused(false)}
+        onKeyDown={onKeyDown}
+        tabIndex={0}
+        aria-label="Testimonials carousel"
+      >
         {ordered.map((item, position) => (
           <motion.div
             key={item.name}
-            className="absolute left-1/2 w-full max-w-[560px] -translate-x-1/2 rounded-[28px] border border-[color:var(--border)] bg-[color:var(--surface)] p-7 shadow-[var(--shadow-soft)]"
+            className="absolute inset-x-0 mx-auto w-full max-w-[560px] rounded-[28px] border border-[color:var(--border)] bg-[color:var(--surface)] p-7 shadow-[var(--shadow-soft)]"
             style={{ zIndex: 4 - position }}
+            drag={position === 0 && !shouldReduceMotion ? "x" : false}
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.06}
+            onDragEnd={(_, info) => {
+              if (position !== 0) return
+              if (info.offset.x < -60) handleNext()
+              if (info.offset.x > 60) handlePrev()
+            }}
             animate={{
               y: position * offsets.y,
               scale: 1 - position * offsets.scaleStep,
-              rotate: position === 0 ? 0 : position % 2 === 0 ? offsets.rotate : -offsets.rotate,
+              rotate: 0,
               opacity: 1 - position * 0.12,
             }}
-            transition={{ type: "spring", stiffness: 220, damping: 24 }}
+            whileHover={position === 0 ? { y: -2 } : undefined}
+            transition={
+              shouldReduceMotion
+                ? { duration: 0.2 }
+                : { type: "spring", stiffness: 220, damping: 24 }
+            }
           >
             <p className="text-sm md:text-base text-[var(--ink)] leading-relaxed">
               "{item.quote}"
@@ -120,6 +155,21 @@ export default function Testimonials() {
         >
           →
         </button>
+      </div>
+
+      <div className="mt-5 flex items-center justify-center gap-2">
+        {TESTIMONIALS.map((item, dotIndex) => (
+          <button
+            key={item.name}
+            type="button"
+            onClick={() => setIndex(dotIndex)}
+            className={`h-2 rounded-full transition ${
+              dotIndex === index ? "w-7 bg-[var(--accent)]" : "w-2 bg-[color:var(--border)] hover:bg-[var(--muted)]"
+            }`}
+            aria-label={`Show testimonial ${dotIndex + 1}`}
+            aria-current={dotIndex === index ? "true" : undefined}
+          />
+        ))}
       </div>
     </section>
   )

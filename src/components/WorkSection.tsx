@@ -6,8 +6,8 @@ export default function WorkSection() {
     <section id="work" className="py-16 md:py-24 reveal">
       <h2 className="section-title">Projects</h2>
       <p className="mt-2 text-sm md:text-base section-lead">
-        A small gallery of things I’ve designed — product features, flows, and UI work I genuinely enjoyed building.
-        Hover to peek, click to explore.
+        Selected case studies from web and mobile products.
+        Each project covers the problem, process, and outcomes.
       </p>
 
       <WorkCards items={WORK_ITEMS} />

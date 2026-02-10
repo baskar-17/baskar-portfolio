@@ -13,28 +13,28 @@ export default function Hero() {
       <div className="mx-auto max-w-[1200px] px-4">
         <div className="eyebrow">
           <span className="h-2 w-2 rounded-full bg-[var(--accent)]" />
-          Available for new projects
+          Open to work
         </div>
 
         <p className="mt-6 text-sm md:text-base text-[var(--muted)]">
-          Hello 👋, great to have you here
+          Hi, I am Baskar.
         </p>
 
         <h1 className="mt-4 text-4xl md:text-6xl font-semibold leading-tight tracking-tight text-[var(--ink)]">
-          I design digital experiences that feel simple, clear, and honestly… nice to use.
+          I design product experiences that are clear, practical, and ready to ship.
         </h1>
 
         <p className="mt-5 max-w-2xl text-[var(--muted)] text-base md:text-lg leading-relaxed">
-          I'm Baskar — I enjoy turning complicated requirements into clean, friendly products.
-          I care about usability, good structure, and the little details that make an interface feel effortless.
+          I work closely with product managers and engineers to simplify complex flows,
+          improve usability, and move ideas into production with minimal handoff friction.
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row gap-3">
           <a href="#work" className="btn-primary">
-            See what I've built
+            View selected work
           </a>
           <a href="#contact" className="btn-secondary">
-            Say hello
+            Get in touch
           </a>
         </div>
       </div>

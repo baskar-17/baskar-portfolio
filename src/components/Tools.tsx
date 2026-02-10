@@ -29,7 +29,7 @@ const TOOLS: ToolItem[] = [
 export default function Tools() {
   return (
     <div className="mt-8">
-      <h3 className="text-lg font-semibold text-[var(--ink)]">Tools</h3>
+      <h3 className="text-lg font-semibold text-[var(--ink)]">Tools I use regularly</h3>
       <div className="mt-4 flex flex-wrap gap-3">
         {TOOLS.map((tool) => (
           <div key={tool.name} className="group relative">

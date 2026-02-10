@@ -11,9 +11,9 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="text-sm text-[var(--muted)]">
             <div className="font-medium text-[var(--ink)]">
-              Thanks for stopping by 👋
+              Thanks for reviewing my work.
             </div>
-            <div className="mt-1">If you're building something cool, I'd love to hear about it.</div>
+            <div className="mt-1">If there is a role fit, I am happy to continue the conversation.</div>
             <div className="mt-3">© {year} Baskar</div>
           </div>
 

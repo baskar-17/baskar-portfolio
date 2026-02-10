@@ -8,6 +8,12 @@ export default function WorkCards({ items }: { items: WorkItem[] }) {
         <Link
           key={item.slug}
           to={`/work/${item.slug}`}
+          state={{ preserveScrollPosition: true }}
+          onClick={() => {
+            if (typeof window !== "undefined") {
+              sessionStorage.setItem("portfolio:homeScrollY", String(window.scrollY))
+            }
+          }}
           className="group flex flex-col gap-4 rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-glass)] p-4 shadow-[var(--shadow-soft)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[var(--shadow-strong)] backdrop-blur"
           aria-label={`${item.title} project`}
         >
