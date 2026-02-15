@@ -3,24 +3,20 @@ import { useLocation, useParams } from "react-router-dom"
 import CaseStudyShell from "../components/case-study/CaseStudyShell"
 import Section from "../components/case-study/Section"
 import ProblemCards from "../components/case-study/ProblemCards"
-import GoalsSplit from "../components/case-study/GoalsSplit"
-import ResearchBlock from "../components/case-study/ResearchBlock"
 import Gallery from "../components/case-study/Gallery"
 import Callout from "../components/case-study/Callout"
 import NextProject from "../components/case-study/NextProject"
-import { WORK_ITEMS } from "../data/work"
+import { WORK_ITEMS, getAdjacentWorkItems } from "../data/work"
 import { COMPANIES } from "../data/companies"
 import SportsGravyCaseStudy from "./sportsgravy-case-study"
 
 const NAV_ITEMS = [
-  { id: "overview", label: "Overview" },
-  { id: "problems", label: "Problems" },
-  { id: "goals", label: "Goals" },
-  { id: "research", label: "Research" },
-  { id: "insights", label: "Insights" },
-  { id: "decisions", label: "Decisions" },
-  { id: "final-designs", label: "Final Designs" },
-  { id: "readiness", label: "Readiness" },
+  { id: "overview", label: "Snapshot" },
+  { id: "problems", label: "Problem" },
+  { id: "responsibilities", label: "My Role" },
+  { id: "process", label: "Process" },
+  { id: "solution", label: "Solution" },
+  { id: "impact", label: "Impact" },
   { id: "learnings", label: "Learnings" },
 ]
 
@@ -90,8 +86,32 @@ export default function CaseStudy() {
       detail: point,
     })),
   )
-
+  const { prev, next } = getAdjacentWorkItems(project.slug)
   const companyData = company || fallbackCompany
+
+  const roleResponsibilities =
+    companyData?.highlights?.length && companyData.highlights.length > 0
+      ? companyData.highlights
+      : [
+          "Owned end-to-end UX from discovery to final UI delivery.",
+          "Worked closely with product and engineering on scope and priorities.",
+          "Delivered implementation-ready interaction and visual specs.",
+        ]
+
+  const processSteps = project.caseStudy.designJourney.length
+    ? project.caseStudy.designJourney
+    : [
+        "Aligned on business goals and user needs.",
+        "Mapped workflows and translated them into wireframes.",
+        "Finalized high-fidelity UI and delivery specs.",
+      ]
+
+  const galleryItems = finalDesigns.length
+    ? finalDesigns
+    : processSteps.slice(0, 4).map((step, index) => ({
+        title: `Design milestone ${index + 1}`,
+        caption: step,
+      }))
 
   return (
     <CaseStudyShell
@@ -101,19 +121,18 @@ export default function CaseStudy() {
       timeline={project.caseStudy.timeline}
       navItems={NAV_ITEMS}
     >
-      <Section id="overview" title="Overview" withDivider={false}>
+      <Section id="overview" title="Project Snapshot" withDivider={false}>
         <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="space-y-4 text-[var(--muted)] leading-relaxed">
             <p>{project.caseStudy.overview}</p>
             <p>
-              I partnered with the team ({project.caseStudy.team}) to align on
-              goals, define the experience, and deliver a consistent product
-              across devices.
+              This case study focuses on the decisions I drove, how I worked with
+              cross-functional partners, and what changed in product readiness.
             </p>
           </div>
           <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 text-sm text-[var(--muted)] shadow-[var(--shadow-soft)]">
             <div className="text-xs uppercase tracking-[0.25em] text-[var(--muted)]">
-              Project Reality
+              At a glance
             </div>
             <div className="mt-3 space-y-2">
               <div>
@@ -128,118 +147,147 @@ export default function CaseStudy() {
                 <span className="font-semibold text-[var(--ink)]">Timeline:</span>
                 <span className="ml-2">{project.caseStudy.timeline}</span>
               </div>
+              <div>
+                <span className="font-semibold text-[var(--ink)]">Product:</span>
+                <span className="ml-2">{project.productType}</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div className="mt-8 grid grid-cols-2 gap-4 text-center md:grid-cols-4">
           <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 shadow-[var(--shadow-soft)]">
-            <div className="text-3xl font-bold text-[var(--ink)]">
-              {goals.length}
-            </div>
-            <div className="text-xs text-[var(--muted)] mt-2">Goals</div>
+            <div className="text-3xl font-bold text-[var(--ink)]">{goals.length}</div>
+            <div className="mt-2 text-xs text-[var(--muted)]">Goals</div>
           </div>
           <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 shadow-[var(--shadow-soft)]">
             <div className="text-3xl font-bold text-[var(--ink)]">
               {project.caseStudy.research.length}
             </div>
-            <div className="text-xs text-[var(--muted)] mt-2">Research inputs</div>
+            <div className="mt-2 text-xs text-[var(--muted)]">Research inputs</div>
           </div>
           <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 shadow-[var(--shadow-soft)]">
-            <div className="text-3xl font-bold text-[var(--ink)]">
-              {project.caseStudy.personas.length}
-            </div>
-            <div className="text-xs text-[var(--muted)] mt-2">Personas</div>
+            <div className="text-3xl font-bold text-[var(--ink)]">{personas.length}</div>
+            <div className="mt-2 text-xs text-[var(--muted)]">Personas</div>
           </div>
           <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 shadow-[var(--shadow-soft)]">
             <div className="text-3xl font-bold text-[var(--ink)]">
               {project.caseStudy.outcomes.length}
             </div>
-            <div className="text-xs text-[var(--muted)] mt-2">Outcomes</div>
+            <div className="mt-2 text-xs text-[var(--muted)]">Impact points</div>
           </div>
         </div>
       </Section>
 
-      <Section id="problems" title="Problems">
+      <Section id="problems" title="Problem Space">
         <ProblemCards items={insights.slice(0, 4)} />
       </Section>
 
-      <Section id="goals" title="Goals">
-        <GoalsSplit
-          left={{
-            title: "Product goals",
-            items: goals,
-          }}
-          right={{
-            title: "Personas",
-            items: personas.map((p) => p.summary),
-          }}
-        />
-      </Section>
-
-      <Section id="research" title="Research & Inputs">
-        <ResearchBlock
-          stats={project.caseStudy.research.map((entry) => ({
-            label: entry.method,
-            value: entry.detail,
-          }))}
-          bullets={project.caseStudy.research.map((entry) => entry.detail)}
-        />
-      </Section>
-
-      <Section id="insights" title="Insights">
-        <div className="grid gap-4 md:grid-cols-2">
-          {insights.map((insight) => (
+      <Section id="responsibilities" title="My Role & Responsibilities">
+        <div className="grid gap-4 md:grid-cols-3">
+          {roleResponsibilities.map((item) => (
             <div
-              key={`${insight.title}-${insight.detail}`}
+              key={item}
               className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 text-sm text-[var(--muted)] leading-relaxed shadow-[var(--shadow-soft)]"
             >
-              <div className="font-semibold text-[var(--ink)]">
-                {insight.title}
-              </div>
-              <p className="mt-2">{insight.detail}</p>
+              {item}
             </div>
           ))}
         </div>
+        <div className="mt-6 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] p-5 text-sm text-[var(--muted)] leading-relaxed">
+          <div className="text-xs uppercase tracking-[0.25em] text-[var(--muted)]">
+            Collaboration model
+          </div>
+          <p className="mt-3">
+            I worked with {project.caseStudy.team} to prioritize scope, validate
+            assumptions, and keep product and engineering aligned from discovery
+            through delivery.
+          </p>
+        </div>
       </Section>
 
-      <Section id="decisions" title="Design Decisions">
+      <Section id="process" title="Process at a Glance">
+        <div className="space-y-3">
+          {processSteps.map((step, index) => (
+            <div
+              key={step}
+              className="flex items-start gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 text-sm text-[var(--muted)] leading-relaxed shadow-[var(--shadow-soft)]"
+            >
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[color:var(--surface-muted)] text-xs font-semibold text-[var(--ink)]">
+                {index + 1}
+              </span>
+              <span>{step}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 grid gap-6 lg:grid-cols-2">
+          <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 shadow-[var(--shadow-soft)]">
+            <div className="text-xs uppercase tracking-[0.25em] text-[var(--muted)]">
+              Key user flows
+            </div>
+            <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
+              {project.caseStudy.userFlows.map((flow) => (
+                <li key={flow} className="flex items-start gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  <span>{flow}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 shadow-[var(--shadow-soft)]">
+            <div className="text-xs uppercase tracking-[0.25em] text-[var(--muted)]">
+              Information architecture
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {project.caseStudy.informationArchitecture.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-[color:var(--border)] bg-[color:var(--surface-muted)] px-3 py-1 text-xs text-[var(--muted)]"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section id="solution" title="Solution Highlights">
         <div className="space-y-4">
           {decisions.map((decision) => (
             <div
               key={decision.title}
               className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 text-sm text-[var(--muted)] leading-relaxed shadow-[var(--shadow-soft)]"
             >
-              <div className="font-semibold text-[var(--ink)]">
-                {decision.title}
-              </div>
+              <div className="font-semibold text-[var(--ink)]">{decision.title}</div>
               <p className="mt-2">{decision.detail}</p>
               {decision.tradeoff ? (
-                <p className="mt-2 text-xs text-[var(--muted)]">
-                  {decision.tradeoff}
-                </p>
+                <p className="mt-2 text-xs text-[var(--muted)]">{decision.tradeoff}</p>
               ) : null}
             </div>
           ))}
         </div>
+
+        <div className="mt-6">
+          <Gallery
+            items={galleryItems.map((item) => ({
+              title: item.title,
+              caption: item.caption,
+            }))}
+          />
+        </div>
+
         <div className="mt-6">
           <Callout
-            title="Decisions aligned the whole team"
-            body="The final set of patterns helped product and engineering iterate faster with fewer surprises during build." 
+            title="Why this mattered for delivery"
+            body="The final interaction patterns reduced decision churn and gave engineering a clearer path to implementation."
           />
         </div>
       </Section>
 
-      <Section id="final-designs" title="Final Designs">
-        <Gallery
-          items={finalDesigns.map((item) => ({
-            title: item.title,
-            caption: item.caption,
-          }))}
-        />
-      </Section>
-
-      <Section id="readiness" title="Readiness">
+      <Section id="impact" title="Outcome & Impact">
         <div className="grid gap-4 md:grid-cols-3">
           {project.caseStudy.outcomes.map((outcome) => (
             <div
@@ -250,35 +298,48 @@ export default function CaseStudy() {
             </div>
           ))}
         </div>
+        <div className="mt-6 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] p-5 text-sm text-[var(--muted)] leading-relaxed">
+          <div className="text-xs uppercase tracking-[0.25em] text-[var(--muted)]">
+            Success criteria
+          </div>
+          <ul className="mt-3 space-y-2">
+            {goals.map((goal) => (
+              <li key={goal} className="flex items-start gap-2">
+                <span className="mt-1 h-2 w-2 rounded-full bg-[var(--accent)]" />
+                <span>{goal}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </Section>
 
-      <Section id="learnings" title="Learnings">
+      <Section id="learnings" title="What I Learned">
         <div className="space-y-4 text-[var(--muted)] leading-relaxed">
           {learnings.map((learning) => (
             <p key={learning}>{learning}</p>
           ))}
         </div>
 
-        {companyData?.highlights?.length ? (
-          <div className="mt-8">
-            <div className="text-xs uppercase tracking-[0.25em] text-[var(--muted)]">
-              What I worked on
-            </div>
-            <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
-              {companyData.highlights.map((h) => (
-                <li key={h} className="flex gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[color:var(--border)] shrink-0" />
-                  <span className="leading-relaxed">{h}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-
         <div className="mt-10">
           <NextProject
-            prev={{ label: "Previous", title: "Previous case study", href: "/" }}
-            next={{ label: "Next", title: "Next case study", href: "/" }}
+            prev={
+              prev
+                ? {
+                    label: "Previous",
+                    title: prev.title,
+                    href: `/work/${prev.slug}`,
+                  }
+                : undefined
+            }
+            next={
+              next
+                ? {
+                    label: "Next",
+                    title: next.title,
+                    href: `/work/${next.slug}`,
+                  }
+                : undefined
+            }
           />
         </div>
       </Section>

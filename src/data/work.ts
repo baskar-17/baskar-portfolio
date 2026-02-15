@@ -522,3 +522,17 @@ export const WORK_ITEMS: WorkItem[] = [
     },
   },
 ]
+
+export function getAdjacentWorkItems(currentSlug: string) {
+  const currentIndex = WORK_ITEMS.findIndex((item) => item.slug === currentSlug)
+
+  if (currentIndex < 0) {
+    return { prev: null, next: null }
+  }
+
+  return {
+    prev: currentIndex > 0 ? WORK_ITEMS[currentIndex - 1] : null,
+    next:
+      currentIndex < WORK_ITEMS.length - 1 ? WORK_ITEMS[currentIndex + 1] : null,
+  }
+}

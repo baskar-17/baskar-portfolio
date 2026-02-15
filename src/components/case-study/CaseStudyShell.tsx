@@ -12,6 +12,7 @@ type CaseStudyShellProps = {
   timeline?: string
   navItems: NavItem[]
   children: React.ReactNode
+  hideIntro?: boolean
 }
 
 export default function CaseStudyShell({
@@ -21,6 +22,7 @@ export default function CaseStudyShell({
   timeline,
   navItems,
   children,
+  hideIntro = false,
 }: CaseStudyShellProps) {
   const [activeId, setActiveId] = useState(navItems[0]?.id)
 
@@ -55,25 +57,27 @@ export default function CaseStudyShell({
 
   return (
     <div className="min-h-screen text-[var(--ink)]">
-      <section className="mx-auto max-w-[1200px] px-4 py-12 md:py-20">
-        <p className="text-xs uppercase tracking-[0.3em] text-[var(--muted)]">
-          Case Study
-        </p>
-        <h1 className="mt-4 text-4xl md:text-6xl font-semibold tracking-tight text-[var(--accent)]">
-          {title}
-        </h1>
-        <p className="mt-4 max-w-3xl text-base md:text-lg text-[var(--muted)] leading-relaxed">
-          {summary}
-        </p>
+      {!hideIntro ? (
+        <section className="mx-auto max-w-[1200px] px-4 py-12 md:py-20">
+          <p className="text-xs uppercase tracking-[0.3em] text-[var(--muted)]">
+            Case Study
+          </p>
+          <h1 className="mt-4 text-4xl md:text-6xl font-semibold tracking-tight text-[var(--accent)]">
+            {title}
+          </h1>
+          <p className="mt-4 max-w-3xl text-base md:text-lg text-[var(--muted)] leading-relaxed">
+            {summary}
+          </p>
 
-        {(role || timeline) && (
-          <div className="mt-6 flex flex-wrap gap-3 text-sm text-[var(--muted)]">
-            {role ? <span>{role}</span> : null}
-            {role && timeline ? <span>•</span> : null}
-            {timeline ? <span>{timeline}</span> : null}
-          </div>
-        )}
-      </section>
+          {(role || timeline) && (
+            <div className="mt-6 flex flex-wrap gap-3 text-sm text-[var(--muted)]">
+              {role ? <span>{role}</span> : null}
+              {role && timeline ? <span>•</span> : null}
+              {timeline ? <span>{timeline}</span> : null}
+            </div>
+          )}
+        </section>
+      ) : null}
 
       <section className="mx-auto max-w-[1200px] px-4 pb-16">
         <div className="grid gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
@@ -101,29 +105,6 @@ export default function CaseStudyShell({
           </aside>
 
           <main className="space-y-16">
-            <div className="lg:hidden">
-              <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] p-4">
-                <div className="text-xs uppercase tracking-[0.3em] text-[var(--muted)] mb-3">
-                  Jump to
-                </div>
-                <div className="flex flex-wrap gap-2 text-sm">
-                  {navItems.map((item) => (
-                    <a
-                      key={item.id}
-                      href={`#${item.id}`}
-                      className={`rounded-full border border-[color:var(--border)] px-3 py-1 transition ${
-                        activeId === item.id
-                          ? "bg-[color:var(--surface)] text-[var(--ink)]"
-                          : "bg-transparent text-[var(--muted)] hover:text-[var(--ink)]"
-                      }`}
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-
             {children}
           </main>
         </div>
