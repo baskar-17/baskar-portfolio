@@ -19,19 +19,19 @@ const META = [
 const EXECUTIVE_SUMMARY = [
   {
     label: "Problem",
-    text: "Youth sports organizations relied on fragmented tools, creating confusion across registration, communication, and day-to-day operations.",
+    text: "Core workflows were distributed across disconnected modules, creating structural friction in registration, operations, and communication as product scope expanded.",
   },
   {
     label: "Intervention",
-    text: "I redesigned the experience around role-specific workflows and introduced shared UI patterns across key modules.",
-  },
-  {
-    label: "Outcome",
-    text: "The product moved toward a clearer MVP with reduced flow ambiguity and stronger delivery alignment.",
+    text: "I re-architected the experience around role-based workflow paths and a shared interaction model across registration, CRM, and fundraising surfaces.",
   },
   {
     label: "My ownership",
-    text: "I owned end-to-end UX from workflow definition and IA to final interaction design and handoff-ready UI patterns.",
+    text: "I owned system-level UX strategy, IA, interaction decisions, and delivery artifacts, partnering with product and engineering to align scope and implementation sequencing.",
+  },
+  {
+    label: "Outcome",
+    text: "The team moved from feature-level decisions to a scalable workflow foundation with clearer handoffs, lower ambiguity, and stronger product consistency.",
   },
 ]
 
@@ -66,32 +66,32 @@ const CONSTRAINTS = [
 
 const DECISIONS = [
   {
-    decision: "Role-specific entry points",
-    why: "Each user type had distinct top tasks and needed immediate relevance on entry.",
-    alternatives: "Single shared dashboard with filtered content.",
-    tradeoffs: "More upfront IA decisions, less short-term flexibility.",
-    outcome: "Faster path to core actions for admins, coaches, and parents.",
+    decision: "Role-based system entry architecture",
+    why: "The product had diverging job-to-be-done across admins, coaches, and parents; a generic entry layer created downstream complexity in every module.",
+    alternatives: "A single dashboard with conditional filters and role toggles.",
+    tradeoffs: "Higher upfront IA and routing coordination with engineering, but lower long-term navigation debt.",
+    outcome: "Established a scalable system spine that reduced cross-module duplication and clarified primary paths by role.",
   },
   {
-    decision: "Progressive disclosure for setup",
-    why: "Admin setup complexity was causing drop-off and decision fatigue.",
-    alternatives: "One-page setup with all settings exposed.",
-    tradeoffs: "Additional step design and state handling complexity.",
-    outcome: "Clearer setup progression and fewer handoff clarifications.",
+    decision: "Progressive disclosure for admin setup logic",
+    why: "Setup state complexity was front-loaded, which increased decision fatigue and made implementation states difficult to reason about.",
+    alternatives: "Flat configuration screen with all controls visible at once.",
+    tradeoffs: "Introduced orchestration complexity and more state definitions, but improved system legibility for both users and engineers.",
+    outcome: "Created a controlled setup sequence that reduced ambiguity in behavior specs and improved implementation confidence.",
   },
   {
-    decision: "Reusable cross-module patterns",
-    why: "Parallel module development needed visual and behavioral consistency.",
-    alternatives: "Module-specific UI treatments.",
-    tradeoffs: "Reduced visual variety in exchange for speed and coherence.",
-    outcome: "Improved implementation predictability and shared design language.",
+    decision: "Cross-module interaction primitives",
+    why: "Parallel development without shared primitives risked inconsistent behavior and escalating design-maintenance cost.",
+    alternatives: "Local pattern ownership per module team.",
+    tradeoffs: "Less visual differentiation short term, but significantly lower UI drift and rework risk.",
+    outcome: "Improved delivery predictability and created a reusable base for future modules without increasing technical debt.",
   },
   {
-    decision: "Contextual fundraising integration",
-    why: "Monetization needed to feel relevant to user intent, not intrusive.",
-    alternatives: "Standalone fundraising pages disconnected from daily workflows.",
-    tradeoffs: "More nuanced placement strategy and prioritization work.",
-    outcome: "Balanced business visibility with user-task continuity.",
+    decision: "Contextual monetization placement strategy",
+    why: "Revenue surfaces needed to support business goals without fragmenting core operational workflows.",
+    alternatives: "Dedicated fundraising destinations separated from primary user journeys.",
+    tradeoffs: "Required tighter prioritization and shared instrumentation planning with product.",
+    outcome: "Balanced commercial visibility with workflow continuity, preserving system coherence while supporting growth objectives.",
   },
 ]
 
@@ -103,17 +103,17 @@ const SCALE_SIGNALS = [
 ]
 
 const IMPACT = [
-  "Simplified workflow architecture",
-  "Improved role clarity",
-  "Reduced operational friction",
-  "Increased team alignment",
-  "Strengthened product consistency",
+  "Shifted the product from screen-by-screen decisions to system-level workflow architecture.",
+  "Created role clarity that reduced cross-functional ambiguity in prioritization and delivery.",
+  "Improved implementation consistency through reusable interaction logic across modules.",
+  "Reduced operational friction by replacing fragmented journeys with guided paths.",
+  "Strengthened product maturity with a scalable design foundation for future scope.",
 ]
 
 const REFLECTION = [
-  "What worked: role-first workflow mapping made decisions faster and more defensible.",
-  "What I would improve: add earlier instrumentation to validate assumptions with behavioral data.",
-  "Key learning: system-level consistency is a strategic multiplier when product scope expands quickly.",
+  "What worked: role-first system mapping improved decision quality and accelerated cross-functional alignment.",
+  "What I would improve: define instrumentation earlier so workflow assumptions can be validated before scale.",
+  "Key learning: strategic consistency at the system layer prevents downstream UX and engineering debt.",
 ]
 
 const NAV_ITEMS = [
@@ -148,7 +148,7 @@ export default function SportsGravyCaseStudy() {
             SportsGravy
           </h1>
           <p className="mt-6 text-xl leading-relaxed text-[var(--muted)] md:text-2xl">
-            Reframed a fragmented youth sports product into a role-driven system that improved clarity, delivery confidence, and scalability.
+            Reframed a fragmented youth sports product into a scalable role-based system that improved execution clarity and product readiness.
           </p>
         </div>
 
@@ -157,9 +157,9 @@ export default function SportsGravyCaseStudy() {
         </div>
 
         <p className="mt-8 max-w-3xl text-base leading-relaxed text-[var(--muted)] md:text-lg">
-          I owned the product experience strategy and execution across discovery,
-          information architecture, interaction design, and engineering handoff.
-          The redesign moved the team from fragmented flows to a guided, reusable system.
+          I owned system-level UX strategy and execution across workflow architecture,
+          IA, interaction logic, and engineering handoff. The redesign shifted the
+          team from fragmented feature delivery to a coherent, reusable product model.
         </p>
 
         <figure className="mt-12 overflow-hidden rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)]">
@@ -175,20 +175,22 @@ export default function SportsGravyCaseStudy() {
       <StorySection
         id="executive-summary"
         title="Executive Summary"
-        subtitle="A concise view of the product challenge, intervention, and strategic outcome."
+        subtitle="Problem, intervention, ownership, and outcome in one senior-level view."
       >
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 md:p-8">
+          <div className="space-y-4">
           {EXECUTIVE_SUMMARY.map((item) => (
             <article
               key={item.label}
-              className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5"
+              className="grid gap-2 border-b border-[color:var(--border)] pb-4 last:border-b-0 last:pb-0 md:grid-cols-[170px_1fr] md:gap-4"
             >
               <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--ink)]">
                 {item.label}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">{item.text}</p>
+              <p className="text-sm leading-relaxed text-[var(--muted)]">{item.text}</p>
             </article>
           ))}
+          </div>
         </div>
       </StorySection>
 
@@ -296,15 +298,15 @@ export default function SportsGravyCaseStudy() {
       <StorySection
         id="impact"
         title="Outcome"
-        subtitle="Strategic product impact, expressed as execution and system quality gains."
+        subtitle="Impact statements focused on product maturity, system coherence, and delivery quality."
         centered
         muted
       >
-        <div className="mx-auto grid max-w-4xl gap-4 md:grid-cols-3">
+        <div className="mx-auto max-w-5xl space-y-5">
           {IMPACT.map((item) => (
             <p
               key={item}
-              className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] px-5 py-8 text-center text-lg font-semibold tracking-tight text-[var(--ink)] md:text-xl"
+              className="border-l-2 border-[color:var(--ink)] pl-5 text-2xl font-semibold leading-tight tracking-tight text-[var(--ink)] md:text-4xl"
             >
               {item}
             </p>

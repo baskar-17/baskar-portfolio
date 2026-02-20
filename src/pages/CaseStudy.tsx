@@ -1,53 +1,31 @@
 import { useEffect } from "react"
 import { useLocation, useParams } from "react-router-dom"
+import BeforeAfterSplit from "../components/case-study/BeforeAfterSplit"
 import CaseStudyShell from "../components/case-study/CaseStudyShell"
-import Section from "../components/case-study/Section"
-import ProblemCards from "../components/case-study/ProblemCards"
-import Gallery from "../components/case-study/Gallery"
-import Callout from "../components/case-study/Callout"
+import DecisionCards from "../components/case-study/DecisionCards"
+import MetaGrid from "../components/case-study/MetaGrid"
 import NextProject from "../components/case-study/NextProject"
+import StorySection from "../components/case-study/StorySection"
 import { WORK_ITEMS, getAdjacentWorkItems } from "../data/work"
-import { COMPANIES } from "../data/companies"
 import SportsGravyCaseStudy from "./sportsgravy-case-study"
 
 const NAV_ITEMS = [
-  { id: "overview", label: "Snapshot" },
-  { id: "problems", label: "Problem" },
-  { id: "responsibilities", label: "My Role" },
-  { id: "process", label: "Process" },
-  { id: "solution", label: "Solution" },
+  { id: "overview", label: "Hero" },
+  { id: "executive-summary", label: "Summary" },
+  { id: "problem-framing", label: "Problem" },
+  { id: "constraints", label: "Constraints" },
+  { id: "system-redesign", label: "System" },
+  { id: "decisions", label: "Decisions" },
+  { id: "before-after", label: "Before/After" },
+  { id: "design-system", label: "Scale" },
   { id: "impact", label: "Impact" },
-  { id: "learnings", label: "Learnings" },
+  { id: "reflection", label: "Reflection" },
 ]
 
 export default function CaseStudy() {
   const { slug } = useParams()
   const location = useLocation()
   const project = WORK_ITEMS.find((p) => p.slug === slug)
-  const companySlug =
-    project?.slug === "onhand-pos" || project?.slug === "onhand-dairy"
-      ? "onhand"
-      : project?.slug
-  const company = COMPANIES.find((c) => c.slug === companySlug)
-  const fallbackCompany = project
-    ? {
-        company: project.title,
-        role: "Product designer",
-        duration: "Project engagement",
-        location: "Remote",
-        intro:
-          "I partnered closely with product and engineering to define the experience, map the user journey, and deliver a polished interface.",
-        highlights: [
-          "Translated goals into clear flows, wireframes, and UI.",
-          "Balanced usability with visual clarity across screens.",
-          "Aligned decisions with real constraints and timelines.",
-        ],
-        story: [
-          "This project strengthened my focus on outcomes, clarity, and collaboration.",
-        ],
-        tags: ["Product Design"],
-      }
-    : null
 
   useEffect(() => {
     const state = location.state as { preserveScrollPosition?: boolean } | null
@@ -75,252 +53,330 @@ export default function CaseStudy() {
     return <SportsGravyCaseStudy />
   }
 
-  const goals = project.caseStudy.goals
-  const personas = project.caseStudy.personas
-  const decisions = project.caseStudy.decisions ?? []
-  const finalDesigns = project.caseStudy.finalDesigns ?? []
-  const learnings = project.caseStudy.learnings ?? []
-  const insights = personas.flatMap((persona) =>
-    persona.painPoints.map((point) => ({
-      title: persona.name,
-      detail: point,
-    })),
-  )
   const { prev, next } = getAdjacentWorkItems(project.slug)
-  const companyData = company || fallbackCompany
+  const learnings = project.caseStudy.learnings ?? []
 
-  const roleResponsibilities =
-    companyData?.highlights?.length && companyData.highlights.length > 0
-      ? companyData.highlights
+  const insights = project.caseStudy.personas.flatMap((persona) =>
+    persona.painPoints.map((point) => point),
+  )
+
+  const problemBullets =
+    insights.length >= 3
+      ? insights.slice(0, 3)
       : [
-          "Owned end-to-end UX from discovery to final UI delivery.",
-          "Worked closely with product and engineering on scope and priorities.",
-          "Delivered implementation-ready interaction and visual specs.",
+          project.caseStudy.goals[0] ?? "Clarify core product workflows.",
+          project.caseStudy.goals[1] ?? "Reduce operational complexity across user roles.",
+          project.caseStudy.goals[2] ?? "Create a scalable interaction foundation.",
         ]
 
-  const processSteps = project.caseStudy.designJourney.length
-    ? project.caseStudy.designJourney
-    : [
-        "Aligned on business goals and user needs.",
-        "Mapped workflows and translated them into wireframes.",
-        "Finalized high-fidelity UI and delivery specs.",
-      ]
+  const executiveSummary = [
+    {
+      label: "Problem",
+      text: `${project.title} had workflow complexity across ${project.caseStudy.informationArchitecture.slice(0, 3).join(", ")}${project.caseStudy.informationArchitecture.length > 3 ? ", and other modules" : ""}, creating inconsistency as scope expanded.`,
+    },
+    {
+      label: "Intervention",
+      text: "I restructured the experience into clearer workflow paths and introduced reusable interaction patterns across key journeys.",
+    },
+    {
+      label: "My ownership",
+      text: `I owned UX strategy, IA, interaction decisions, and engineering handoff while aligning closely with ${project.caseStudy.team}.`,
+    },
+    {
+      label: "Outcome",
+      text: "The product moved from fragmented feature execution to a more coherent, scalable system with stronger delivery clarity.",
+    },
+  ]
 
-  const galleryItems = finalDesigns.length
-    ? finalDesigns
-    : processSteps.slice(0, 4).map((step, index) => ({
-        title: `Design milestone ${index + 1}`,
-        caption: step,
-      }))
+  const constraints = [
+    {
+      title: "Technical limitations",
+      detail:
+        "Production instrumentation was limited, so decisions were grounded in interviews, product reviews, and workflow analysis.",
+    },
+    {
+      title: "Stakeholder alignment",
+      detail: `Cross-functional alignment across ${project.caseStudy.team} was required to keep scope and quality aligned.`,
+    },
+    {
+      title: "Timeline pressure",
+      detail: `The delivery window (${project.caseStudy.timeline}) required prioritizing system clarity over one-off UI exploration.`,
+    },
+    {
+      title: "Legacy complexity",
+      detail:
+        "Information architecture had uneven patterns across modules, requiring consolidation without slowing release velocity.",
+    },
+    {
+      title: "Business risk",
+      detail:
+        "Product priorities had to balance operational workflows with growth goals while avoiding experience fragmentation.",
+    },
+  ]
+
+  const decisions =
+    project.caseStudy.decisions && project.caseStudy.decisions.length > 0
+      ? project.caseStudy.decisions
+      : project.caseStudy.designJourney.slice(0, 4).map((step, index) => ({
+          title: `System decision ${index + 1}`,
+          detail: step,
+          tradeoff: "Trade-off: prioritized implementation clarity and scalability over short-term customization.",
+        }))
+
+  const decisionCards = decisions.map((decision, index) => ({
+    decision: decision.title,
+    why: decision.detail,
+    alternatives:
+      index % 2 === 0
+        ? "Localized screen-level changes without system-level pattern alignment."
+        : "One-size-fits-all flows with minimal role differentiation.",
+    tradeoffs:
+      decision.tradeoff ??
+      "Required stronger upfront coordination with engineering, but reduced long-term interaction and maintenance debt.",
+    outcome:
+      project.caseStudy.outcomes[index % project.caseStudy.outcomes.length] ??
+      "Improved product consistency and implementation predictability.",
+  }))
+
+  const beforeAfterPairs = [
+    {
+      beforeTitle: "From Fragmented to Guided",
+      beforeText:
+        problemBullets[0] ??
+        "Users relied on disconnected screens and inconsistent workflow decisions.",
+      afterTitle: "Role-based workflow progression",
+      afterText:
+        project.caseStudy.userFlows[0] ??
+        "Core tasks were reorganized into clearer paths with predictable transitions.",
+    },
+    {
+      beforeTitle: "From Manual to Structured",
+      beforeText:
+        problemBullets[1] ??
+        "Execution depended on ad hoc handoffs and inconsistent decision logic.",
+      afterTitle: "Reusable system primitives",
+      afterText:
+        project.caseStudy.designJourney[0] ??
+        "Shared interaction patterns reduced ambiguity and improved delivery consistency.",
+    },
+  ]
+
+  const scaleSignals = [
+    `Reusable patterns across ${project.caseStudy.informationArchitecture.slice(0, 3).join(", ")}${project.caseStudy.informationArchitecture.length > 3 ? ", and additional modules" : ""}.`,
+    "Interaction logic designed for consistency across primary user journeys.",
+    `System decisions documented to support future iteration beyond ${project.caseStudy.timeline}.`,
+    "Cross-functional handoff structure that improves scalability and reduces rework.",
+  ]
+
+  const reflections =
+    learnings.length > 0
+      ? learnings.slice(0, 3)
+      : [
+          "System-level framing improves decision quality when product scope is broad.",
+          "Earlier instrumentation would strengthen confidence in prioritization decisions.",
+          "Scalable interaction logic reduces downstream design and engineering debt.",
+        ]
+
+  const metaItems = [
+    { label: "Role", value: project.caseStudy.role },
+    { label: "Duration", value: project.caseStudy.timeline },
+    { label: "Team", value: project.caseStudy.team },
+    { label: "Platform", value: project.productType },
+    { label: "Scope", value: project.caseStudy.informationArchitecture.slice(0, 3).join(", ") },
+  ]
 
   return (
     <CaseStudyShell
+      hideIntro
       title={project.title}
       summary={project.caseStudy.overview}
       role={project.caseStudy.role}
       timeline={project.caseStudy.timeline}
       navItems={NAV_ITEMS}
     >
-      <Section id="overview" title="Project Snapshot" withDivider={false}>
-        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="space-y-4 text-[var(--muted)] leading-relaxed">
-            <p>{project.caseStudy.overview}</p>
-            <p>
-              This case study focuses on the decisions I drove, how I worked with
-              cross-functional partners, and what changed in product readiness.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 text-sm text-[var(--muted)] shadow-[var(--shadow-soft)]">
-            <div className="text-xs uppercase tracking-[0.25em] text-[var(--muted)]">
-              At a glance
-            </div>
-            <div className="mt-3 space-y-2">
-              <div>
-                <span className="font-semibold text-[var(--ink)]">Role:</span>
-                <span className="ml-2">{project.caseStudy.role}</span>
-              </div>
-              <div>
-                <span className="font-semibold text-[var(--ink)]">Team:</span>
-                <span className="ml-2">{project.caseStudy.team}</span>
-              </div>
-              <div>
-                <span className="font-semibold text-[var(--ink)]">Timeline:</span>
-                <span className="ml-2">{project.caseStudy.timeline}</span>
-              </div>
-              <div>
-                <span className="font-semibold text-[var(--ink)]">Product:</span>
-                <span className="ml-2">{project.productType}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 grid grid-cols-2 gap-4 text-center md:grid-cols-4">
-          <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 shadow-[var(--shadow-soft)]">
-            <div className="text-3xl font-bold text-[var(--ink)]">{goals.length}</div>
-            <div className="mt-2 text-xs text-[var(--muted)]">Goals</div>
-          </div>
-          <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 shadow-[var(--shadow-soft)]">
-            <div className="text-3xl font-bold text-[var(--ink)]">
-              {project.caseStudy.research.length}
-            </div>
-            <div className="mt-2 text-xs text-[var(--muted)]">Research inputs</div>
-          </div>
-          <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 shadow-[var(--shadow-soft)]">
-            <div className="text-3xl font-bold text-[var(--ink)]">{personas.length}</div>
-            <div className="mt-2 text-xs text-[var(--muted)]">Personas</div>
-          </div>
-          <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 shadow-[var(--shadow-soft)]">
-            <div className="text-3xl font-bold text-[var(--ink)]">
-              {project.caseStudy.outcomes.length}
-            </div>
-            <div className="mt-2 text-xs text-[var(--muted)]">Impact points</div>
-          </div>
-        </div>
-      </Section>
-
-      <Section id="problems" title="Problem Space">
-        <ProblemCards items={insights.slice(0, 4)} />
-      </Section>
-
-      <Section id="responsibilities" title="My Role & Responsibilities">
-        <div className="grid gap-4 md:grid-cols-3">
-          {roleResponsibilities.map((item) => (
-            <div
-              key={item}
-              className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 text-sm text-[var(--muted)] leading-relaxed shadow-[var(--shadow-soft)]"
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-        <div className="mt-6 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] p-5 text-sm text-[var(--muted)] leading-relaxed">
-          <div className="text-xs uppercase tracking-[0.25em] text-[var(--muted)]">
-            Collaboration model
-          </div>
-          <p className="mt-3">
-            I worked with {project.caseStudy.team} to prioritize scope, validate
-            assumptions, and keep product and engineering aligned from discovery
-            through delivery.
+      <section id="overview" className="py-24 md:py-32">
+        <div className="max-w-4xl">
+          <p className="text-xs uppercase tracking-[0.3em] text-[var(--muted)]">Case Study</p>
+          <h1 className="mt-4 text-5xl font-semibold tracking-tight text-[var(--ink)] md:text-7xl">
+            {project.title}
+          </h1>
+          <p className="mt-6 text-xl leading-relaxed text-[var(--muted)] md:text-2xl">
+            Transformed a complex product area into a clearer workflow system with stronger delivery alignment and long-term scalability.
           </p>
-        </div>
-      </Section>
-
-      <Section id="process" title="Process at a Glance">
-        <div className="space-y-3">
-          {processSteps.map((step, index) => (
-            <div
-              key={step}
-              className="flex items-start gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 text-sm text-[var(--muted)] leading-relaxed shadow-[var(--shadow-soft)]"
-            >
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[color:var(--surface-muted)] text-xs font-semibold text-[var(--ink)]">
-                {index + 1}
-              </span>
-              <span>{step}</span>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-6 grid gap-6 lg:grid-cols-2">
-          <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 shadow-[var(--shadow-soft)]">
-            <div className="text-xs uppercase tracking-[0.25em] text-[var(--muted)]">
-              Key user flows
-            </div>
-            <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
-              {project.caseStudy.userFlows.map((flow) => (
-                <li key={flow} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
-                  <span>{flow}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 shadow-[var(--shadow-soft)]">
-            <div className="text-xs uppercase tracking-[0.25em] text-[var(--muted)]">
-              Information architecture
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {project.caseStudy.informationArchitecture.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-[color:var(--border)] bg-[color:var(--surface-muted)] px-3 py-1 text-xs text-[var(--muted)]"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      <Section id="solution" title="Solution Highlights">
-        <div className="space-y-4">
-          {decisions.map((decision) => (
-            <div
-              key={decision.title}
-              className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 text-sm text-[var(--muted)] leading-relaxed shadow-[var(--shadow-soft)]"
-            >
-              <div className="font-semibold text-[var(--ink)]">{decision.title}</div>
-              <p className="mt-2">{decision.detail}</p>
-              {decision.tradeoff ? (
-                <p className="mt-2 text-xs text-[var(--muted)]">{decision.tradeoff}</p>
-              ) : null}
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-6">
-          <Gallery
-            items={galleryItems.map((item) => ({
-              title: item.title,
-              caption: item.caption,
-            }))}
-          />
-        </div>
-
-        <div className="mt-6">
-          <Callout
-            title="Why this mattered for delivery"
-            body="The final interaction patterns reduced decision churn and gave engineering a clearer path to implementation."
-          />
-        </div>
-      </Section>
-
-      <Section id="impact" title="Outcome & Impact">
-        <div className="grid gap-4 md:grid-cols-3">
-          {project.caseStudy.outcomes.map((outcome) => (
-            <div
-              key={outcome}
-              className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 text-sm text-[var(--muted)] leading-relaxed shadow-[var(--shadow-soft)]"
-            >
-              {outcome}
-            </div>
-          ))}
-        </div>
-        <div className="mt-6 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] p-5 text-sm text-[var(--muted)] leading-relaxed">
-          <div className="text-xs uppercase tracking-[0.25em] text-[var(--muted)]">
-            Success criteria
-          </div>
-          <ul className="mt-3 space-y-2">
-            {goals.map((goal) => (
-              <li key={goal} className="flex items-start gap-2">
-                <span className="mt-1 h-2 w-2 rounded-full bg-[var(--accent)]" />
-                <span>{goal}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Section>
-
-      <Section id="learnings" title="What I Learned">
-        <div className="space-y-4 text-[var(--muted)] leading-relaxed">
-          {learnings.map((learning) => (
-            <p key={learning}>{learning}</p>
-          ))}
         </div>
 
         <div className="mt-10">
+          <MetaGrid items={metaItems} />
+        </div>
+
+        <p className="mt-8 max-w-3xl text-base leading-relaxed text-[var(--muted)] md:text-lg">
+          I owned system-level UX strategy and execution from problem framing to
+          implementation-ready design decisions, aligning product and engineering
+          on priorities, constraints, and delivery quality.
+        </p>
+
+        <figure className="mt-12 overflow-hidden rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)]">
+          <img
+            src={project.thumbnailSrc}
+            alt={`${project.title} hero visual`}
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </figure>
+      </section>
+
+      <StorySection
+        id="executive-summary"
+        title="Executive Summary"
+        subtitle="Problem, intervention, ownership, and outcome in one senior-level view."
+      >
+        <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 md:p-8">
+          <div className="space-y-4">
+            {executiveSummary.map((item) => (
+              <article
+                key={item.label}
+                className="grid gap-2 border-b border-[color:var(--border)] pb-4 last:border-b-0 last:pb-0 md:grid-cols-[170px_1fr] md:gap-4"
+              >
+                <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--ink)]">
+                  {item.label}
+                </h3>
+                <p className="text-sm leading-relaxed text-[var(--muted)]">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </StorySection>
+
+      <StorySection
+        id="problem-framing"
+        title="Product Complexity Was Slowing Decision Quality"
+        subtitle="The core challenge was system clarity across modules and user roles, not isolated interface polish."
+        muted
+      >
+        <div className="grid gap-4 md:grid-cols-3">
+          {problemBullets.map((bullet) => (
+            <article
+              key={bullet}
+              className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 text-sm leading-relaxed text-[var(--muted)]"
+            >
+              {bullet}
+            </article>
+          ))}
+        </div>
+      </StorySection>
+
+      <StorySection
+        id="constraints"
+        title="Constraints & Complexity"
+        subtitle="Execution required balancing platform constraints, stakeholder needs, and delivery timelines."
+      >
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {constraints.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] p-5"
+            >
+              <h3 className="text-base font-semibold text-[var(--ink)]">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">{item.detail}</p>
+            </article>
+          ))}
+        </div>
+      </StorySection>
+
+      <StorySection
+        id="system-redesign"
+        title="System Redesign"
+        subtitle="I shifted the product from isolated screens to connected workflow logic that scales across modules."
+        centered
+        muted
+      >
+        <div className="mx-auto max-w-4xl">
+          <div className="flex min-h-[320px] items-center justify-center rounded-2xl border border-dashed border-[color:var(--border)] bg-[color:var(--surface)] p-8 text-center text-sm text-[var(--muted)]">
+            Workflow transformation diagram placeholder
+          </div>
+          <p className="mx-auto mt-6 max-w-3xl text-center text-sm leading-relaxed text-[var(--muted)] md:text-base">
+            Before: users moved through disconnected screens with inconsistent logic.
+            After: workflow paths became role-aware, predictable, and implementation-ready.
+          </p>
+        </div>
+      </StorySection>
+
+      <StorySection
+        id="decisions"
+        title="Key Design Decisions"
+        subtitle="Each decision links system-level reasoning, trade-offs, and delivery impact."
+      >
+        <DecisionCards items={decisionCards} />
+      </StorySection>
+
+      <StorySection
+        id="before-after"
+        title="Before to After Transformation"
+        subtitle="How the redesign shifted the product from fragmented execution to structured delivery."
+        muted
+      >
+        <div className="space-y-5">
+          {beforeAfterPairs.map((pair) => (
+            <BeforeAfterSplit
+              key={pair.beforeTitle}
+              beforeTitle={pair.beforeTitle}
+              beforeText={pair.beforeText}
+              afterTitle={pair.afterTitle}
+              afterText={pair.afterText}
+            />
+          ))}
+        </div>
+      </StorySection>
+
+      <StorySection
+        id="design-system"
+        title="Design System & Scale"
+        subtitle="Scalability was enabled through reusable interaction logic and structured cross-functional handoff."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          {scaleSignals.map((signal) => (
+            <article
+              key={signal}
+              className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 text-sm leading-relaxed text-[var(--muted)]"
+            >
+              {signal}
+            </article>
+          ))}
+        </div>
+      </StorySection>
+
+      <StorySection
+        id="impact"
+        title="Outcome"
+        subtitle="Impact statements focused on product maturity, system coherence, and delivery quality."
+        centered
+        muted
+      >
+        <div className="mx-auto max-w-5xl space-y-5">
+          {project.caseStudy.outcomes.map((item) => (
+            <p
+              key={item}
+              className="border-l-2 border-[color:var(--ink)] pl-5 text-2xl font-semibold leading-tight tracking-tight text-[var(--ink)] md:text-4xl"
+            >
+              {item}
+            </p>
+          ))}
+        </div>
+      </StorySection>
+
+      <StorySection id="reflection" title="Reflection" subtitle="Senior-level takeaway from this engagement.">
+        <ul className="space-y-4">
+          {reflections.map((item) => (
+            <li
+              key={item}
+              className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 text-sm leading-relaxed text-[var(--muted)]"
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-12">
           <NextProject
             prev={
               prev
@@ -342,7 +398,7 @@ export default function CaseStudy() {
             }
           />
         </div>
-      </Section>
+      </StorySection>
     </CaseStudyShell>
   )
 }

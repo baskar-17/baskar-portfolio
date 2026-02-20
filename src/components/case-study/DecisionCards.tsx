@@ -25,7 +25,7 @@ export default function DecisionCards({ items }: DecisionCardsProps) {
               {item.why}
             </li>
             <li>
-              <span className="font-medium text-[var(--ink)]">Alternatives:</span>{" "}
+              <span className="font-medium text-[var(--ink)]">Alternatives considered:</span>{" "}
               {item.alternatives}
             </li>
             <li>
