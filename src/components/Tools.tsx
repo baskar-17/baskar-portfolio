@@ -1,3 +1,5 @@
+import { motion } from "framer-motion"
+
 type ToolItem = {
   name: string
   imageSrc: string
@@ -23,25 +25,28 @@ const TOOLS: ToolItem[] = [
   { name: "Lovable", imageSrc: withBase("/tools/loveable.png") },
   { name: "HTML", imageSrc: withBase("/tools/html.png") },
   { name: "CSS", imageSrc: withBase("/tools/css.png") },
-
 ]
 
 export default function Tools() {
   return (
     <div className="mt-8">
-      <h3 className="text-lg font-semibold text-[var(--ink)]">Tools I use regularly</h3>
-      <div className="mt-4 flex flex-wrap gap-3">
+      <h3 className="text-xl font-semibold text-[var(--ink)] tracking-tight">Tools I use regularly</h3>
+      <div className="mt-6 flex flex-wrap gap-4">
         {TOOLS.map((tool) => (
           <div key={tool.name} className="group relative">
-            <div className="h-11 w-11 rounded-xl overflow-hidden border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--shadow-soft)]">
+            <motion.div
+              whileHover={{ scale: 1.15, rotate: [-2, 2, -1, 0] }}
+              transition={{ type: "spring", stiffness: 400, damping: 12 }}
+              className="h-12 w-12 rounded-2xl overflow-hidden border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--shadow-soft)]"
+            >
               <img
                 src={tool.imageSrc}
                 alt={tool.name}
-                className="h-full w-full object-cover rounded-lg"
+                className="h-full w-full object-cover rounded-xl"
                 loading="lazy"
               />
-            </div>
-            <span className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-3 opacity-0 scale-95 group-hover:-translate-y-6 group-hover:opacity-100 group-hover:scale-100 transition text-[11px] font-semibold text-white bg-[var(--ink)] px-2.5 py-1 rounded-full shadow-[var(--shadow-strong)]">
+            </motion.div>
+            <span className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-2 opacity-0 scale-95 transition-all duration-300 group-hover:-translate-y-8 group-hover:opacity-100 group-hover:scale-100 text-[11px] font-semibold text-white bg-[var(--ink)] px-3 py-1.5 rounded-full shadow-[var(--shadow-strong)] whitespace-nowrap z-10">
               {tool.name}
             </span>
           </div>

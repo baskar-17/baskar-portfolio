@@ -1,3 +1,5 @@
+import { motion } from "framer-motion"
+
 type DecisionItem = {
   decision: string
   why: string
@@ -12,32 +14,34 @@ type DecisionCardsProps = {
 
 export default function DecisionCards({ items }: DecisionCardsProps) {
   return (
-    <div className="grid gap-5 md:grid-cols-2">
+    <div className="grid gap-6 md:grid-cols-2">
       {items.map((item) => (
-        <article
+        <motion.article
           key={item.decision}
-          className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6"
+          whileHover={{ y: -4, scale: 1.01 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] p-8 shadow-[var(--shadow-soft)] transition-shadow hover:shadow-[var(--shadow-strong)]"
         >
           <h3 className="text-xl font-semibold text-[var(--ink)]">{item.decision}</h3>
-          <ul className="mt-4 space-y-3 text-sm leading-relaxed text-[var(--muted)]">
-            <li>
-              <span className="font-medium text-[var(--ink)]">Why it mattered:</span>{" "}
-              {item.why}
+          <ul className="mt-6 space-y-4 text-sm leading-relaxed text-[var(--muted)]">
+            <li className="flex flex-col gap-1">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--ink)] opacity-70">Why it mattered</span>
+              <span className="text-base">{item.why}</span>
             </li>
-            <li>
-              <span className="font-medium text-[var(--ink)]">Alternatives considered:</span>{" "}
-              {item.alternatives}
+            <li className="flex flex-col gap-1">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--ink)] opacity-70">Alternatives considered</span>
+              <span className="text-base">{item.alternatives}</span>
             </li>
-            <li>
-              <span className="font-medium text-[var(--ink)]">Trade-offs:</span>{" "}
-              {item.tradeoffs}
+            <li className="flex flex-col gap-1">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--ink)] opacity-70">Trade-offs</span>
+              <span className="text-base">{item.tradeoffs}</span>
             </li>
-            <li>
-              <span className="font-medium text-[var(--ink)]">Outcome:</span>{" "}
-              {item.outcome}
+            <li className="mt-6 rounded-xl bg-[var(--surface-muted)] p-4 pr-6 border-l-2 border-[var(--ink)]">
+              <span className="block text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--ink)] opacity-70 mb-1">Outcome</span>
+              <span className="text-base font-medium text-[var(--ink)]">{item.outcome}</span>
             </li>
           </ul>
-        </article>
+        </motion.article>
       ))}
     </div>
   )

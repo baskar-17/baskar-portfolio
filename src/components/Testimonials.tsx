@@ -52,8 +52,8 @@ export default function Testimonials() {
   )
 
   const offsets = isMobile
-    ? { y: 14, scaleStep: 0.028 }
-    : { y: 18, scaleStep: 0.035 }
+    ? { y: 16, scaleStep: 0.03 }
+    : { y: 20, scaleStep: 0.04 }
 
   const handleNext = () => setIndex((prev) => (prev + 1) % TESTIMONIALS.length)
   const handlePrev = () => setIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
@@ -62,7 +62,7 @@ export default function Testimonials() {
     if (shouldReduceMotion || isPaused) return
     const timer = window.setInterval(() => {
       setIndex((prev) => (prev + 1) % TESTIMONIALS.length)
-    }, 5500)
+    }, 6000)
     return () => window.clearInterval(timer)
   }, [shouldReduceMotion, isPaused])
 
@@ -72,16 +72,16 @@ export default function Testimonials() {
   }
 
   return (
-    <section className="py-16 md:py-24 reveal">
-      <div className="text-left">
+    <section className="py-20 md:py-28 reveal">
+      <div className="text-center md:text-left">
         <h2 className="section-title">From the Teams I’ve Collaborated With</h2>
-        <p className="mt-2 text-sm md:text-base section-lead">
-          A few notes from owners, product and engineering people I have worked with.
+        <p className="mt-4 text-base md:text-lg section-lead mx-auto md:mx-0">
+          A few notes from owners, product and engineering people I have worked closely with.
         </p>
       </div>
 
       <div
-        className="mt-10 relative min-h-[360px] md:min-h-[420px] mx-auto w-full max-w-[620px]"
+        className="mt-14 relative min-h-[380px] md:min-h-[440px] mx-auto w-full max-w-[660px]"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onFocusCapture={() => setIsPaused(true)}
@@ -93,43 +93,43 @@ export default function Testimonials() {
         {ordered.map((item, position) => (
           <motion.div
             key={item.name}
-            className="absolute inset-x-0 mx-auto w-full max-w-[560px] rounded-[28px] border border-[color:var(--border)] bg-[color:var(--surface)] p-7 shadow-[var(--shadow-soft)]"
+            className="absolute inset-x-0 mx-auto w-full max-w-[600px] rounded-[32px] border border-[color:var(--border)] bg-[color:var(--surface)] p-8 md:p-10 shadow-[var(--shadow-soft)] cursor-grab active:cursor-grabbing"
             style={{ zIndex: 4 - position }}
             drag={position === 0 && !shouldReduceMotion ? "x" : false}
             dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.06}
+            dragElastic={0.08}
             onDragEnd={(_, info) => {
               if (position !== 0) return
-              if (info.offset.x < -60) handleNext()
-              if (info.offset.x > 60) handlePrev()
+              if (info.offset.x < -80) handleNext()
+              if (info.offset.x > 80) handlePrev()
             }}
             animate={{
               y: position * offsets.y,
               scale: 1 - position * offsets.scaleStep,
               rotate: 0,
-              opacity: 1 - position * 0.12,
+              opacity: 1 - position * 0.15,
             }}
-            whileHover={position === 0 ? { y: -2 } : undefined}
+            whileHover={position === 0 ? { y: -6, scale: 1.01 } : undefined}
             transition={
               shouldReduceMotion
                 ? { duration: 0.2 }
-                : { type: "spring", stiffness: 220, damping: 24 }
+                : { type: "spring", stiffness: 350, damping: 28 }
             }
           >
-            <p className="text-sm md:text-base text-[var(--ink)] leading-relaxed">
+            <p className="text-base md:text-lg text-[var(--ink)] leading-[1.7] md:leading-[1.8] tracking-tight">
               "{item.quote}"
             </p>
-            <div className="mt-6 flex items-center gap-3">
-              <div className="h-12 w-12 rounded-full bg-[var(--surface-muted)] flex items-center justify-center text-sm font-semibold text-[var(--muted)]">
+            <div className="mt-8 flex items-center gap-4">
+              <div className="h-14 w-14 rounded-full bg-[var(--surface-muted)] flex items-center justify-center text-sm font-semibold text-[var(--muted)] border border-[color:var(--border)] shadow-sm shrink-0">
                 {item.name
                   .split(" ")
                   .map((part) => part[0])
                   .join("")
                   .slice(0, 2)}
               </div>
-              <div>
-                <div className="font-semibold text-[var(--ink)]">{item.name}</div>
-                <div className="text-xs text-[var(--muted)]">
+              <div className="min-w-0">
+                <div className="font-semibold text-lg text-[var(--ink)] tracking-tight">{item.name}</div>
+                <div className="text-sm text-[var(--muted)] mt-0.5">
                   {item.role} • {item.company}
                 </div>
               </div>
@@ -138,34 +138,33 @@ export default function Testimonials() {
         ))}
       </div>
 
-      <div className="mt-8 flex items-center justify-center gap-3">
+      <div className="mt-8 flex items-center justify-center gap-4">
         <button
           type="button"
           onClick={handlePrev}
           aria-label="Show previous testimonial"
-          className="h-11 w-11 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--shadow-soft)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-strong)] text-[var(--ink)]"
+          className="h-12 w-12 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-strong)] hover:bg-[color:var(--surface-muted)] text-[var(--ink)] flex items-center justify-center"
         >
-          ←
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
         </button>
         <button
           type="button"
           onClick={handleNext}
           aria-label="Show next testimonial"
-          className="h-11 w-11 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--shadow-soft)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-strong)] text-[var(--ink)]"
+          className="h-12 w-12 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-strong)] hover:bg-[color:var(--surface-muted)] text-[var(--ink)] flex items-center justify-center"
         >
-          →
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
         </button>
       </div>
 
-      <div className="mt-5 flex items-center justify-center gap-2">
+      <div className="mt-6 flex items-center justify-center gap-2.5">
         {TESTIMONIALS.map((item, dotIndex) => (
           <button
             key={item.name}
             type="button"
             onClick={() => setIndex(dotIndex)}
-            className={`h-2 rounded-full transition ${
-              dotIndex === index ? "w-7 bg-[var(--accent)]" : "w-2 bg-[color:var(--border)] hover:bg-[var(--muted)]"
-            }`}
+            className={`h-2.5 rounded-full transition-all duration-300 ${dotIndex === index ? "w-8 bg-[var(--ink)] shadow-sm" : "w-2.5 bg-[color:var(--border)] hover:bg-[var(--muted)] hover:scale-110"
+              }`}
             aria-label={`Show testimonial ${dotIndex + 1}`}
             aria-current={dotIndex === index ? "true" : undefined}
           />

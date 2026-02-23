@@ -1,10 +1,11 @@
 import { FaLinkedin, FaBehance, FaInstagram } from "react-icons/fa"
+import { motion } from "framer-motion"
 
 export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="relative py-16 md:py-24 border-t border-[color:var(--border)] overflow-hidden reveal">
+    <footer className="relative py-16 pb-32 md:py-24 border-t border-[color:var(--border)] overflow-hidden reveal">
 
 
       <div className="relative">
@@ -26,33 +27,39 @@ export default function Footer() {
             </a>
 
             <div className="flex items-center gap-4 pt-2 text-lg">
-              <a
-                className="hover:text-[var(--accent)] transition"
+              <motion.a
+                whileHover={{ scale: 1.15, rotate: [-2, 2, -1, 0] }}
+                transition={{ type: "spring", stiffness: 400, damping: 12 }}
+                className="hover:text-[var(--accent)] text-[var(--muted)] transition-colors"
                 href="https://www.linkedin.com/in/baskar17/?skipRedirect=true"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
               >
                 <FaLinkedin />
-              </a>
-              <a
-                className="hover:text-[var(--accent)] transition"
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.15, rotate: [-2, 2, -1, 0] }}
+                transition={{ type: "spring", stiffness: 400, damping: 12 }}
+                className="hover:text-[var(--accent)] text-[var(--muted)] transition-colors"
                 href="https://www.behance.net/baskars1"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Behance"
               >
                 <FaBehance />
-              </a>
-              <a
-                className="hover:text-[var(--accent)] transition"
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.15, rotate: [-2, 2, -1, 0] }}
+                transition={{ type: "spring", stiffness: 400, damping: 12 }}
+                className="hover:text-[var(--accent)] text-[var(--muted)] transition-colors"
                 href="https://www.instagram.com/baskar__17"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
               >
                 <FaInstagram />
-              </a>
+              </motion.a>
             </div>
           </div>
         </div>

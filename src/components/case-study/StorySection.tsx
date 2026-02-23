@@ -1,3 +1,5 @@
+import { motion } from "framer-motion"
+
 type StorySectionProps = {
   id: string
   title: string
@@ -17,10 +19,14 @@ export default function StorySection({
 }: StorySectionProps) {
   return (
     <section id={id} className="py-24 md:py-28">
-      <div
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className={
           muted
-            ? "rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] px-6 py-10 md:px-10"
+            ? "rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] px-6 py-10 md:px-10 shadow-[var(--shadow-soft)]"
             : ""
         }
       >
@@ -35,7 +41,7 @@ export default function StorySection({
           ) : null}
         </header>
         <div className="mt-10">{children}</div>
-      </div>
+      </motion.div>
     </section>
   )
 }
