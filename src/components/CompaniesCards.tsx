@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
 import type { CompanyData } from "../data/companies"
 
 function Logo({ company, logoSrc }: { company: string; logoSrc?: string }) {
@@ -38,10 +39,8 @@ export default function CompaniesCards({ items }: { items: CompanyData[] }) {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          <a
-            href={c.website}
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to={`/companies/${c.slug}`}
             className="group relative flex items-start gap-5 rounded-3xl glass-card border border-[rgba(255,255,255,0.4)] p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-strong)]"
           >
             <Logo company={c.company} logoSrc={c.logoSrc} />
@@ -70,7 +69,7 @@ export default function CompaniesCards({ items }: { items: CompanyData[] }) {
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </span>
-          </a>
+          </Link>
         </motion.div>
       ))}
     </div>

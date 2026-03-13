@@ -9,12 +9,14 @@ export type WorkItem = {
     overview: string
     role: string
     timeline: string
-    team: string
+    problemStatement: string
     goals: string[]
     research: { method: string; detail: string }[]
     personas: { name: string; summary: string; painPoints: string[] }[]
     userFlows: string[]
     informationArchitecture: string[]
+    wireframes?: { title: string; description: string; imageSrc?: string }[]
+    iteration?: { whatFailed: string; howWeFixedIt: string }[]
     designJourney: string[]
     decisions?: { title: string; detail: string; tradeoff?: string }[]
     finalDesigns?: { title: string; caption: string }[]
@@ -39,7 +41,8 @@ export const WORK_ITEMS: WorkItem[] = [
         "SportsGravy is a community platform that helps youth sports organizations manage teams, schedules, and communication. The project focused on simplifying daily workflows for coaches while keeping parents informed in real time.",
       role: "Lead product designer partnering with a PM and two engineers.",
       timeline: "10 weeks, iterative release.",
-      team: "1 PM, 2 engineers, 1 designer (me).",
+      problemStatement:
+        "Youth sports administrators and coaches struggled with fragmented tools for scheduling, messaging, and roster management. Our core problem was that users relied on ad-hoc spreadsheets and group texts, which led to high support tickets and poor parent visibility.",
       goals: [
         "Reduce coach time spent on scheduling and messaging.",
         "Improve parent visibility into practices, cancellations, and game-day details.",
@@ -108,6 +111,22 @@ export const WORK_ITEMS: WorkItem[] = [
         "Simplified message composition with templates for common updates.",
         "Aligned mobile and web patterns to reduce learning curve.",
       ],
+      wireframes: [
+        {
+          title: "Initial Dashboard Concept",
+          description: "Focused heavily on administrative controls, which testing revealed to be too overwhelming for standard volunteer coaches."
+        }
+      ],
+      iteration: [
+        {
+          whatFailed: "The first iteration of the unified calendar was too dense on mobile devices. Parents couldn't easily distinguish between practices and games.",
+          howWeFixedIt: "We pivoted to a segmented list-view by default on mobile, using clear badging for event types instead of trying to force a traditional calendar grid."
+        },
+        {
+          whatFailed: "Coaches felt the 'Create Event' flow had too many required fields.",
+          howWeFixedIt: "We introduced progressive disclosure, breaking the form into 'Quick Add' (time & place) vs 'Advanced Details' (notes, RSVP requirements)."
+        }
+      ],
       outcomes: [
         "Reduced scheduling time by ~35% in usability tests.",
         "Improved message send completion rate from 68% to 89%.",
@@ -127,7 +146,8 @@ export const WORK_ITEMS: WorkItem[] = [
         "MyKinderPass helps parents discover, compare, and enroll in childcare programs. The goal was to reduce anxiety in the search process and make enrollment decisions feel clearer and safer.",
       role: "Product designer leading research, IA, and UI.",
       timeline: "8 weeks, discovery to MVP.",
-      team: "Founder, 2 engineers, 1 designer (me).",
+      problemStatement:
+        "Parents struggle to discover, compare, and enroll in childcare programs because existing information is fragmented and lacks trust signals.",
       goals: [
         "Increase program inquiry submissions.",
         "Help parents compare options confidently.",
@@ -214,7 +234,8 @@ export const WORK_ITEMS: WorkItem[] = [
         "Mudrex is a crypto investment platform focused on curated portfolios. The project aimed to demystify investment choices and improve onboarding completion for new users.",
       role: "Senior product designer across onboarding and portfolio experience.",
       timeline: "6 weeks, rapid iteration.",
-      team: "1 PM, 3 engineers, 1 designer (me).",
+      problemStatement:
+        "New crypto investors find portfolio selection intimidating and drop off during the funding and KYC steps due to confusing UI and lack of plain-language guidance.",
       goals: [
         "Increase onboarding completion rate.",
         "Clarify risk and return expectations.",
@@ -293,7 +314,8 @@ export const WORK_ITEMS: WorkItem[] = [
         "A Plus Hub is a learning management platform for tutoring centers. The project focused on making lesson planning and student progress tracking faster for instructors.",
       role: "Product designer leading IA, UX, and UI.",
       timeline: "9 weeks, phased rollout.",
-      team: "Founder, 2 engineers, 1 designer (me).",
+      problemStatement:
+        "Tutoring centers waste significant time recreating lesson plans and manually tracking student progress, leading to inconsistent reporting and admin burnout.",
       goals: [
         "Streamline lesson creation and reuse.",
         "Improve visibility into student progress.",
@@ -373,7 +395,8 @@ export const WORK_ITEMS: WorkItem[] = [
         "OnHand POS is a point-of-sale system for fast-paced retailers. The focus was to reduce cashier errors and speed up checkout on tablet devices.",
       role: "Lead designer across checkout, inventory, and reporting.",
       timeline: "12 weeks, beta to launch.",
-      team: "1 PM, 4 engineers, 1 designer (me).",
+      problemStatement:
+        "Retail cashiers make errors and spend too long on checkout flows because the current POS system requires too many taps and makes correcting mistakes difficult.",
       goals: [
         "Reduce checkout time per transaction.",
         "Lower cashier training time.",
@@ -453,7 +476,8 @@ export const WORK_ITEMS: WorkItem[] = [
         "OnHand Dairy is a field app for dairy delivery and subscription management. The goal was to make route delivery and customer updates faster for drivers.",
       role: "Product designer leading mobile UX.",
       timeline: "7 weeks, MVP.",
-      team: "1 PM, 2 engineers, 1 designer (me).",
+      problemStatement:
+        "Dairy delivery drivers face poor connectivity and rely on manual notes, which leads to missed deliveries, miscommunications, and disputes with customers.",
       goals: [
         "Streamline daily delivery routes.",
         "Reduce missed deliveries and disputes.",

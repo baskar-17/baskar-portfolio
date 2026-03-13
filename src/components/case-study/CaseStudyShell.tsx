@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
+import { FiArrowLeft } from "react-icons/fi"
 
 type NavItem = {
   id: string
@@ -58,6 +60,13 @@ export default function CaseStudyShell({
 
   return (
     <div className="min-h-screen text-[var(--ink)]">
+      <header className="absolute top-0 left-0 w-full z-10 py-6 px-4">
+        <div className="mx-auto max-w-[1200px]">
+          <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--ink)]">
+            <FiArrowLeft /> Back to Home
+          </Link>
+        </div>
+      </header>
       {!hideIntro ? (
         <section className="mx-auto max-w-[1200px] gap-6 px-4 py-16 md:py-24">
           <div className="reveal">
@@ -109,8 +118,8 @@ export default function CaseStudyShell({
                       whileHover={{ x: 4 }}
                       transition={{ type: "spring", stiffness: 400, damping: 25 }}
                       className={`block rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all duration-300 ${isActive
-                          ? "bg-[color:var(--ink)] text-white shadow-md shadow-[rgba(0,0,0,0.1)]"
-                          : "text-[var(--muted)] hover:bg-[color:var(--surface-muted)] hover:text-[var(--ink)]"
+                        ? "bg-[color:var(--ink)] text-white shadow-md shadow-[rgba(0,0,0,0.1)]"
+                        : "text-[var(--muted)] hover:bg-[color:var(--surface-muted)] hover:text-[var(--ink)]"
                         }`}
                     >
                       {item.label}
