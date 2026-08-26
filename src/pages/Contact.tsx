@@ -54,9 +54,56 @@ export default function Contact() {
       console.error("Firebase Firestore write error:", dbError);
     }
 
+    const emailjsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+    const emailjsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+    const emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
 
-    // 2. Trigger Email Notification via Web3Forms if key exists
+    // 2. Trigger Email Notification via EmailJS if credentials exist
+    if (emailjsServiceId && emailjsTemplateId && emailjsPublicKey) {
+      try {
+        const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            service_id: emailjsServiceId,
+            template_id: emailjsTemplateId,
+            user_id: emailjsPublicKey,
+            template_params: {
+              from_name: formData.name,
+              from_email: formData.email,
+              enquiry_type: formData.subject,
+              message: formData.message,
+              subject: `New Portfolio Message: ${formData.subject} from ${formData.name}`,
+            },
+          }),
+        })
+
+        if (response.ok) {
+          setSubmitStatus("success")
+          setFormData({ name: "", email: "", subject: "fulltime", message: "" })
+        } else {
+          const errorText = await response.text()
+          throw new Error(errorText || "Failed to trigger email notification.")
+        }
+      } catch (emailError: any) {
+        console.error("EmailJS notification error:", emailError)
+        if (dbSaved) {
+          setSubmitStatus("success")
+          setFormData({ name: "", email: "", subject: "fulltime", message: "" })
+        } else {
+          setSubmitStatus("error")
+          setErrorMessage(emailError.message || "Failed to send message. Please try again.")
+        }
+      } finally {
+        setIsSubmitting(false)
+      }
+      return
+    }
+
+    // 3. Trigger Email Notification via Web3Forms if key exists
     if (accessKey) {
       try {
         const response = await fetch("https://api.web3forms.com/submit", {
@@ -99,7 +146,7 @@ export default function Contact() {
       return
     }
 
-    // 3. Fallback: if no Web3Forms key is set, determine status by DB write
+    // 4. Fallback: if no mailer key is set, determine status by DB write
     setIsSubmitting(false)
     if (dbSaved) {
       setSubmitStatus("success")
