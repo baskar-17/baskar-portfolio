@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import { FiDownload } from "react-icons/fi"
+import { useLocation, Link } from "react-router-dom"
 
 const NAV_ITEMS = [
   { id: "work", label: "Projects" },
@@ -9,11 +10,14 @@ const NAV_ITEMS = [
 ] as const
 
 const RESUME_URL =
-  "https://drive.google.com/file/d/1WlTS7_37XJKg03P6ZnhxdopXF8QYXVRq/view?usp=sharing"
+  "https://drive.google.com/file/d/1xqhITZ903iEeHAXxrvn2PNaFYrPKq8rq/view?usp=sharing"
 
 type NavId = (typeof NAV_ITEMS)[number]["id"]
 
 export default function Header() {
+  const location = useLocation()
+  const isHome = location.pathname === "/"
+
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeId, setActiveId] = useState<NavId>(() => {
     if (typeof window === "undefined") return "work"
@@ -74,17 +78,36 @@ export default function Header() {
               : "bg-transparent"
               }`}
           >
-            <a href="#" className="font-semibold text-lg tracking-tight text-[var(--ink)]">
+            <Link to="/" className="font-semibold text-lg tracking-tight text-[var(--ink)]">
               Baskar
-            </a>
+            </Link>
 
             <nav className="flex items-center gap-1 text-sm font-medium" aria-label="Primary">
               {NAV_ITEMS.map((item) => {
-                const active = activeId === item.id
+                const active = item.id === "contact"
+                  ? location.pathname === "/contact"
+                  : (isHome && activeId === item.id)
+
+                if (item.id === "contact") {
+                  return (
+                    <Link
+                      key={item.id}
+                      to="/contact"
+                      aria-current={active ? "page" : undefined}
+                      className={`relative rounded-full px-5 py-2 transition-colors duration-300 ${active
+                        ? "text-[var(--ink)] bg-[var(--surface-muted)]"
+                        : "text-[var(--muted)] hover:text-[var(--ink)]"
+                        }`}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                }
+
                 return (
                   <a
                     key={item.id}
-                    href={`#${item.id}`}
+                    href={isHome ? `#${item.id}` : `/#${item.id}`}
                     aria-current={active ? "page" : undefined}
                     className={`relative rounded-full px-5 py-2 transition-colors duration-300 ${active
                       ? "text-[var(--ink)] bg-[var(--surface-muted)]"
@@ -114,11 +137,44 @@ export default function Header() {
       <nav className="fixed bottom-0 left-0 right-0 z-50 w-full glass-card border-t border-[rgba(255,255,255,0.4)] px-4 pb-[max(env(safe-area-inset-bottom),1rem)] pt-2 md:hidden">
         <div className="mx-auto flex max-w-sm items-center justify-between px-2">
           {NAV_ITEMS.map((item) => {
-            const active = activeId === item.id
+            const active = item.id === "contact"
+              ? location.pathname === "/contact"
+              : (isHome && activeId === item.id)
+
+            if (item.id === "contact") {
+              return (
+                <Link
+                  key={item.id}
+                  to="/contact"
+                  aria-current={active ? "page" : undefined}
+                  className={`flex flex-col items-center justify-center gap-1.5 rounded-xl px-3 py-2 transition-all duration-300 ${active
+                      ? "text-[var(--ink)]"
+                      : "text-[var(--muted)] hover:text-[var(--ink)]"
+                    }`}
+                >
+                  <div
+                    className={`flex h-8 w-12 items-center justify-center rounded-full transition-colors duration-300 ${active ? "bg-[var(--surface-muted)]" : "bg-transparent"
+                      }`}
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8l-4 4V8a2 2 0 0 1 2-2z"
+                        stroke="currentColor"
+                        strokeWidth={active ? "2" : "1.5"}
+                      />
+                    </svg>
+                  </div>
+                  <span className={`text-[10px] ${active ? "font-semibold" : "font-medium"}`}>
+                    {item.label}
+                  </span>
+                </Link>
+              )
+            }
+
             return (
               <a
                 key={item.id}
-                href={`#${item.id}`}
+                href={isHome ? `#${item.id}` : `/#${item.id}`}
                 aria-current={active ? "page" : undefined}
                 className={`flex flex-col items-center justify-center gap-1.5 rounded-xl px-3 py-2 transition-all duration-300 ${active
                     ? "text-[var(--ink)]"
@@ -151,15 +207,6 @@ export default function Header() {
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path
                         d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zM4 20a8 8 0 0 1 16 0"
-                        stroke="currentColor"
-                        strokeWidth={active ? "2" : "1.5"}
-                      />
-                    </svg>
-                  ) : null}
-                  {item.id === "contact" ? (
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path
-                        d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8l-4 4V8a2 2 0 0 1 2-2z"
                         stroke="currentColor"
                         strokeWidth={active ? "2" : "1.5"}
                       />

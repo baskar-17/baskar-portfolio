@@ -1,77 +1,71 @@
-import { FaLinkedin, FaBehance, FaInstagram } from "react-icons/fa"
-import { FiMail, FiPhone } from "react-icons/fi"
+import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+import { AnimatePresence, motion } from "framer-motion"
+
+const WORDS = ["Design", "Food", "Business Ideas", "Components", "Experience"]
 
 export default function Contact() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % WORDS.length)
+    }, 2000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <section id="contact" className="py-16 md:py-24 reveal">
-      <h2 className="section-title">Contact</h2>
-      <p className="mt-2 text-sm md:text-base section-lead">
-        If you are hiring for a Senior UI/UX Designer, Product Designer, or similar role, I would be glad to connect.
-      </p>
+      <div 
+        className="relative rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] p-10 md:p-16 text-center flex flex-col items-center justify-center max-w-4xl mx-auto shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-strong)] transition-all duration-300 overflow-hidden"
+      >
+        {/* Premium Grid Background Overlay */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-[0.35]"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, var(--border) 1px, transparent 1px),
+              linear-gradient(to bottom, var(--border) 1px, transparent 1px)
+            `,
+            backgroundSize: '24px 24px',
+            maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)'
+          }}
+        />
 
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 transition hover:shadow-[var(--shadow-strong)]">
-          <div className="flex items-center gap-3 text-[var(--ink)]">
-            <FiMail className="text-lg text-[var(--accent)]" />
-            <a className="underline underline-offset-4 hover:text-[var(--accent)] transition" href="mailto:baskars739@gmail.com">
-              baskars739@gmail.com
-            </a>
-          </div>
+        <p className="relative z-10 text-xs font-bold uppercase tracking-[0.2em] text-[var(--muted)] mb-2">
+          Get in touch
+        </p>
 
-          <div className="mt-4 flex items-center gap-3 text-[var(--ink)]">
-            <FiPhone className="text-lg text-[var(--accent)]" />
-            <a className="underline underline-offset-4 hover:text-[var(--accent)] transition" href="tel:+918637632727">
-              +91 863 763 2727
-            </a>
-          </div>
+        <h2 className="relative z-10 mt-4 text-3xl font-semibold tracking-tight text-[var(--ink)] md:text-5xl leading-[1.2] text-center max-w-2xl">
+          Let&apos;s talk about{" "}
+          <span className="inline-block relative overflow-hidden h-[1.25em] text-[var(--accent)] font-bold text-left align-bottom min-w-[220px] md:min-w-[340px]">
+            <AnimatePresence mode="popLayout">
+              <motion.span
+                key={index}
+                initial={{ y: "80%", opacity: 0, scale: 0.96 }}
+                animate={{ y: "0%", opacity: 1, scale: 1 }}
+                exit={{ y: "-80%", opacity: 0, scale: 0.96 }}
+                transition={{ type: "spring", stiffness: 350, damping: 28 }}
+                className="absolute left-0 bottom-[0.08em] block w-full whitespace-nowrap text-[var(--accent)]"
+              >
+                {WORDS[index]}
+              </motion.span>
+            </AnimatePresence>
+          </span>
+        </h2>
 
-          <div className="mt-6 text-sm text-[var(--muted)]">
-            You can also find me here:
-          </div>
+        <p className="relative z-10 mt-6 text-sm md:text-base text-[var(--muted)] max-w-md leading-relaxed">
+          Whether you are looking for a designer, interested in a collaboration, or just want to chat—I&apos;d love to hear from you.
+        </p>
 
-          <div className="mt-3 flex items-center gap-4 text-xl text-[var(--ink)]">
-            <a
-              className="hover:text-[var(--accent)] transition"
-              href="https://www.linkedin.com/in/baskar17/?skipRedirect=true"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedin />
-            </a>
-            <a
-              className="hover:text-[var(--accent)] transition"
-              href="https://www.behance.net/baskars1"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Behance"
-            >
-              <FaBehance />
-            </a>
-            <a
-              className="hover:text-[var(--accent)] transition"
-              href="https://www.instagram.com/baskar__17"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </a>
-          </div>
-        </div>
-
-        <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 transition hover:shadow-[var(--shadow-strong)]">
-          <div className="font-semibold text-[var(--ink)]">A small note</div>
-          <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
-            If you are reaching out about a role, sharing team context, expectations, and timeline helps me respond faster.
-          </p>
-
-          <div className="mt-6 rounded-xl bg-[color:var(--surface-muted)] p-4">
-            <div className="text-sm font-semibold text-[var(--ink)]">Current focus</div>
-            <p className="mt-1 text-sm text-[var(--muted)]">
-              Senior product design roles with strong cross-functional collaboration.
-            </p>
-          </div>
+        <div className="relative z-10 mt-8">
+          <Link
+            to="/contact"
+            className="inline-flex items-center justify-center rounded-full bg-[var(--ink)] px-8 py-3.5 text-sm font-semibold text-white shadow-[0_4px_14px_0_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(0,0,0,0.15)] hover:bg-[#252525]"
+          >
+            Start a conversation
+          </Link>
         </div>
       </div>
     </section>

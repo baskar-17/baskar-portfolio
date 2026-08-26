@@ -50,7 +50,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.h1 variants={item} className="mt-4 max-w-4xl text-5xl md:text-7xl font-semibold leading-[1.1] tracking-tight text-[var(--ink)]">
-            Designing product experiences that are clear, practical, and ready to ship.
+            Designing simple, ready-to-ship product experiences.
           </motion.h1>
 
           <motion.p variants={item} className="mt-6 max-w-2xl text-[var(--muted)] text-lg md:text-xl leading-relaxed">

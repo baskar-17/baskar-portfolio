@@ -295,3 +295,12 @@ a {
     transform: translateY(0);
   }
 }
+
+@media (min-width: 768px) {
+  body {
+    cursor: none;
+  }
+  a, button, select, input, textarea, [role="button"], .cursor-pointer {
+    cursor: none;
+  }
+}

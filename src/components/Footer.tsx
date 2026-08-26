@@ -64,6 +64,13 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Footer watermark */}
+      <div 
+        className="absolute bottom-[-45px] left-1/2 -translate-x-1/2 text-[9vw] font-black tracking-tighter text-[var(--ink)] opacity-[0.05] dark:opacity-[0.03] select-none pointer-events-none whitespace-nowrap z-0 uppercase font-sans"
+      >
+        bask.design
+      </div>
     </footer>
   )
 }
