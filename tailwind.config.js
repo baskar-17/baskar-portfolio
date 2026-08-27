@@ -5,6 +5,8 @@ export default {
     extend: {
       fontFamily: {
         geist: ['Geist', 'sans-serif'],
+        script: ['"Pinyon Script"', 'cursive'],
+        playfair: ['"Playfair Display"', 'serif'],
       },
     },
   },

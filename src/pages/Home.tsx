@@ -53,12 +53,15 @@ export default function Home() {
         />
       </video>
 
-      {/* Interactive Cursor Spotlight Overlay */}
+      {/* Dark Ambient Vignette (Keeps text highly readable and video always visible) */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/60 pointer-events-none" />
+
+      {/* Interactive Cursor Spotlight Reflection (Mix-blend-screen for premium hover glare) */}
       {isMounted && (
         <div
-          className="pointer-events-none absolute inset-0 transition-opacity duration-1000"
+          className="pointer-events-none absolute inset-0 mix-blend-screen opacity-70 hidden md:block"
           style={{
-            background: `radial-gradient(circle 350px at ${mousePos.x}px ${mousePos.y}px, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.6) 40%, rgba(0, 0, 0, 0.95) 100%)`,
+            background: `radial-gradient(circle 380px at ${mousePos.x}px ${mousePos.y}px, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%)`,
           }}
         />
       )}
@@ -71,7 +74,7 @@ export default function Home() {
             href="/"
             className="text-lg font-semibold tracking-tight text-white sm:text-xl"
           >
-            Foldcraft
+            Baskar S.
           </a>
           <div className="hidden items-center gap-6 md:flex">
             <a
@@ -81,16 +84,10 @@ export default function Home() {
               Home
             </a>
             <a
-              href="#projects"
+              href="/companies"
               className="text-sm text-white/80 transition-colors hover:text-white"
             >
               Projects
-            </a>
-            <a
-              href="#studio"
-              className="text-sm text-white/80 transition-colors hover:text-white"
-            >
-              Studio
             </a>
             <a
               href="/contact"
@@ -165,18 +162,11 @@ export default function Home() {
               Home
             </a>
             <a
-              href="#projects"
+              href="/companies"
               onClick={() => setMobileMenuOpen(false)}
               className="text-3xl font-medium text-white/90 transition-colors hover:text-white"
             >
               Projects
-            </a>
-            <a
-              href="#studio"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-3xl font-medium text-white/90 transition-colors hover:text-white"
-            >
-              Studio
             </a>
             <a
               href="/contact"
@@ -201,24 +191,23 @@ export default function Home() {
       <div className="relative z-10 flex h-[calc(100vh-80px)] flex-col justify-between px-6 pb-10 pt-12 sm:pb-12 sm:pt-16 md:px-12 md:pb-16 md:pt-20 lg:px-16">
         {/* Top Section */}
         <div className="max-w-3xl">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-white/90 sm:mb-6 sm:text-sm animate-[fadeSlideUp_0.8s_ease_0.2s_both]">
-            Brand & Visual Storytelling
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white/90 sm:mb-6 sm:text-sm animate-[fadeSlideUp_0.8s_ease_0.2s_both]">
+            Senior UI/UX & Product Designer
           </p>
-          <h1 className="text-3xl font-medium leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl animate-[fadeSlideUp_0.8s_ease_0.4s_both]">
-            Shaping visual <br />
-            narratives, <br />
-            one pixel at a time.
+          <h1 className="text-4xl font-light leading-[1.2] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl animate-[fadeSlideUp_0.8s_ease_0.4s_both]">
+            Designing <span className="font-script italic text-white/90 font-light tracking-wide text-[1.2em] inline-block px-2">products</span> <br />
+            that turn complexity <br />
+            into <span className="font-script italic text-white/90 font-light tracking-wide text-[1.2em] inline-block px-2">clarity.</span>
           </h1>
         </div>
 
         {/* Bottom Section */}
         <div>
-          <p className="mb-5 max-w-sm text-sm leading-relaxed text-white/60 sm:mb-6 sm:max-w-lg sm:text-base md:text-lg animate-[fadeSlideUp_0.8s_ease_0.7s_both]">
-            Turning vision into reality through craft, motion, and an endless
-            pursuit of beauty.
+          <p className="mb-5 max-w-sm text-sm leading-relaxed text-white/70 sm:mb-6 sm:max-w-lg sm:text-base md:text-lg animate-[fadeSlideUp_0.8s_ease_0.7s_both]">
+            I am Baskar S, a Chennai-based designer. Partnering with teams at SportsGravy, BrainVault, and MyKinderPass to ship clean, workflow-driven web and mobile applications.
           </p>
           <a
-            href="#projects"
+            href="/companies"
             className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 sm:px-6 sm:py-3 text-sm font-medium text-black transition-transform hover:scale-105 animate-[fadeSlideUp_0.8s_ease_0.9s_both]"
           >
             Explore Work
