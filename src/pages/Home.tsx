@@ -1,70 +1,17 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { ArrowRight, Menu, X } from "lucide-react"
+import InteractiveCanvas from "../components/InteractiveCanvas"
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [isMounted, setIsMounted] = useState(false)
-
-  // Initialize mouse position in the center after mounting
-  useEffect(() => {
-    setIsMounted(true)
-    setMousePos({
-      x: window.innerWidth / 2,
-      y: window.innerHeight / 2,
-    })
-
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY })
-    }
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (e.touches.length > 0) {
-        setMousePos({
-          x: e.touches[0].clientX,
-          y: e.touches[0].clientY,
-        })
-      }
-    }
-
-    window.addEventListener("mousemove", handleMouseMove)
-    window.addEventListener("touchmove", handleTouchMove)
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
-      window.removeEventListener("touchmove", handleTouchMove)
-    }
-  }, [])
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-black font-geist">
-      {/* Background Video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ objectPosition: "70% center" }}
-      >
-        <source
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260622_204221_5339e40b-e73d-4ab0-9c65-79c18c66fd50.mp4"
-          type="video/mp4"
-        />
-      </video>
+      {/* 3D Interactive Grid Canvas Background */}
+      <InteractiveCanvas />
 
-      {/* Dark Ambient Vignette (Keeps text highly readable and video always visible) */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/60 pointer-events-none" />
-
-      {/* Interactive Cursor Spotlight Reflection (Mix-blend-screen for premium hover glare) */}
-      {isMounted && (
-        <div
-          className="pointer-events-none absolute inset-0 mix-blend-screen opacity-70 hidden md:block"
-          style={{
-            background: `radial-gradient(circle 380px at ${mousePos.x}px ${mousePos.y}px, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%)`,
-          }}
-        />
-      )}
+      {/* Dark Ambient Vignette (Keeps text highly readable and canvas elegant) */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/50 pointer-events-none" />
 
       {/* Navbar (z-30) */}
       <nav className="relative z-30 flex items-center justify-between px-6 py-5 md:px-12 lg:px-16">
