@@ -158,7 +158,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen text-[var(--ink)] bg-[var(--bg-primary)]">
+    <div className="min-h-screen text-[var(--ink)] bg-transparent">
       {/* Header / Back Link */}
       <header className="py-6 px-4 border-b border-[color:var(--border)] glass-card sticky top-0 z-30">
         <div className="mx-auto max-w-[1200px] flex items-center justify-between">
@@ -183,8 +183,8 @@ export default function Contact() {
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--muted)]">
                 Get in touch
               </p>
-              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[var(--ink)] md:text-5xl">
-                Let&apos;s build something simple.
+              <h1 className="mt-4 text-4xl font-light tracking-tight text-[var(--ink)] md:text-5xl leading-tight">
+                Let&apos;s build something <span className="font-script italic text-white/90 font-light tracking-wide text-[1.2em] inline-block px-1">simple</span>.
               </h1>
               <p className="mt-6 text-base leading-relaxed text-[var(--muted)]">
                 If you are hiring for a Senior UI/UX Designer, Product Designer, or have a complex workflow design problem you need solved, I would be glad to connect.

@@ -1,17 +1,11 @@
 import { useState } from "react"
 import { ArrowRight, Menu, X } from "lucide-react"
-import InteractiveCanvas from "../components/InteractiveCanvas"
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-black font-geist">
-      {/* 3D Interactive Grid Canvas Background */}
-      <InteractiveCanvas />
-
-      {/* Dark Ambient Vignette (Keeps text highly readable and canvas elegant) */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/50 pointer-events-none" />
+    <div className="relative h-screen w-full overflow-hidden bg-transparent font-geist">
 
       {/* Navbar (z-30) */}
       <nav className="relative z-30 flex items-center justify-between px-6 py-5 md:px-12 lg:px-16">
