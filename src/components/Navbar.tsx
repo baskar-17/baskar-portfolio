@@ -21,13 +21,13 @@ export default function Navbar() {
   return (
     <header className="fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-5xl z-50">
       {/* Main Navbar Row */}
-      <div className="glass-card rounded-2xl md:rounded-full px-6 py-3 flex items-center justify-between border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+      <div className="glass-card bg-white/80 rounded-2xl md:rounded-full px-6 py-3 flex items-center justify-between border border-black/[0.06] shadow-[0_8px_32px_rgba(24,18,12,0.03)]">
         {/* Logo */}
         <Link
           to="/"
-          className="text-xl font-extrabold tracking-tight text-white font-bricolage hover:opacity-85 transition-opacity"
+          className="text-xl font-extrabold tracking-tight text-black font-bricolage hover:opacity-85 transition-opacity"
         >
-          Baskar S<span className="text-emerald-400">.</span>
+          Baskar S<span className="text-[#E25A3C] font-mono">.</span>
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -38,8 +38,8 @@ export default function Navbar() {
               <Link
                 key={item.label}
                 to={item.path}
-                className={`text-xs uppercase tracking-widest transition-colors hover:text-white ${
-                  isActive ? "text-white" : "text-white/60"
+                className={`text-xs uppercase tracking-widest transition-colors hover:text-black ${
+                  isActive ? "text-black font-semibold" : "text-black/60"
                 }`}
               >
                 {item.label}
@@ -55,20 +55,20 @@ export default function Navbar() {
             onClick={() => setBlueprintMode(!blueprintMode)}
             className={`flex items-center gap-2 rounded-full px-4 py-2 text-[10px] uppercase tracking-wider border transition-all duration-300 ${
               blueprintMode
-                ? "bg-red-500/10 border-red-500/30 text-red-400"
-                : "bg-white/5 border-white/10 text-white/75 hover:bg-white/10"
+                ? "bg-red-500/10 border-red-500/30 text-red-600 font-semibold"
+                : "bg-black/5 border-black/5 text-black/75 hover:bg-black/10"
             }`}
           >
             <span className="relative flex h-2 w-2">
-              <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${blueprintMode ? "bg-red-400" : "bg-white/40"}`}></span>
-              <span className={`relative inline-flex rounded-full h-2 w-2 ${blueprintMode ? "bg-red-500" : "bg-white/60"}`}></span>
+              <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${blueprintMode ? "bg-red-400" : "bg-black/20"}`}></span>
+              <span className={`relative inline-flex rounded-full h-2 w-2 ${blueprintMode ? "bg-red-500" : "bg-black/60"}`}></span>
             </span>
             {blueprintMode ? "Blueprint ON" : "Blueprint Mode"}
           </button>
 
           <Link
             to="/contact"
-            className="rounded-full bg-white px-5 py-2 text-[11px] uppercase tracking-wider font-semibold text-black transition-transform hover:scale-105 inline-block"
+            className="rounded-full bg-black text-white hover:bg-neutral-850 px-5 py-2 text-[11px] uppercase tracking-wider font-semibold transition-transform hover:scale-105 inline-block"
           >
             Let's Talk
           </Link>
@@ -77,7 +77,7 @@ export default function Navbar() {
         {/* Hamburger Toggle (Mobile) */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="relative z-50 flex h-10 w-10 items-center justify-center rounded-full text-white transition-transform active:scale-90 md:hidden"
+          className="relative z-50 flex h-10 w-10 items-center justify-center rounded-full text-black transition-transform active:scale-90 md:hidden animate-none"
           aria-label="Toggle Menu"
         >
           <div className="relative h-6 w-6">
@@ -105,7 +105,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`absolute left-0 right-0 top-16 z-40 overflow-hidden bg-black/95 backdrop-blur-xl rounded-2xl border border-white/10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden ${
+        className={`absolute left-0 right-0 top-16 z-40 overflow-hidden bg-white/95 backdrop-blur-xl rounded-2xl border border-black/[0.08] shadow-lg transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden ${
           mobileMenuOpen ? "max-h-[350px] opacity-100 py-6 px-8" : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
@@ -117,8 +117,8 @@ export default function Navbar() {
                 key={item.label}
                 to={item.path}
                 onClick={handleLinkClick}
-                className={`text-base uppercase tracking-widest transition-colors hover:text-white ${
-                  isActive ? "text-white" : "text-white/60"
+                className={`text-sm uppercase tracking-widest transition-colors hover:text-black ${
+                  isActive ? "text-black font-semibold" : "text-black/60"
                 }`}
               >
                 {item.label}
@@ -131,13 +131,13 @@ export default function Navbar() {
             onClick={() => setBlueprintMode(!blueprintMode)}
             className={`flex items-center justify-center gap-2 rounded-xl py-3 text-xs uppercase tracking-wider border transition-all duration-300 w-full ${
               blueprintMode
-                ? "bg-red-500/10 border-red-500/30 text-red-400"
-                : "bg-white/5 border-white/10 text-white/75"
+                ? "bg-red-500/10 border-red-500/30 text-red-600 font-semibold"
+                : "bg-black/5 border-black/5 text-black/75"
             }`}
           >
             <span className="relative flex h-2 w-2">
-              <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${blueprintMode ? "bg-red-400" : "bg-white/40"}`}></span>
-              <span className={`relative inline-flex rounded-full h-2 w-2 ${blueprintMode ? "bg-red-500" : "bg-white/60"}`}></span>
+              <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${blueprintMode ? "bg-red-400" : "bg-black/20"}`}></span>
+              <span className={`relative inline-flex rounded-full h-2 w-2 ${blueprintMode ? "bg-red-500" : "bg-black/60"}`}></span>
             </span>
             {blueprintMode ? "Blueprint Mode: ON" : "Enable Blueprint Mode"}
           </button>
@@ -145,7 +145,7 @@ export default function Navbar() {
           <Link
             to="/contact"
             onClick={handleLinkClick}
-            className="mt-2 rounded-xl bg-white py-3 text-center text-sm uppercase tracking-wider font-semibold text-black transition-transform hover:scale-105 block"
+            className="mt-2 rounded-xl bg-black py-3 text-center text-xs uppercase tracking-wider font-semibold text-white hover:bg-neutral-850 transition-transform block"
           >
             Let's Talk
           </Link>
