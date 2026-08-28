@@ -14,7 +14,7 @@ function AppContent() {
   const { blueprintMode } = useBlueprint()
 
   return (
-    <div className={`relative min-h-screen w-full bg-[#FAF9F5] font-geist text-black overflow-x-hidden selection:bg-black/5 selection:text-black transition-colors duration-500 ${blueprintMode ? "blueprint-active" : ""}`}>
+    <div className={`relative min-h-screen w-full bg-transparent font-geist text-[var(--ink)] overflow-x-hidden selection:bg-black/5 dark:selection:bg-white/5 selection:text-[var(--ink)] transition-colors duration-500 ${blueprintMode ? "blueprint-active" : ""}`}>
       {/* Boot Loading Micro-animation */}
       <Preloader />
 
