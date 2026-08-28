@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { ArrowRight, AlertTriangle, CheckCircle, Info } from "lucide-react"
+import { useBlueprint } from "../context/BlueprintContext"
 
 export default function FrictionSandbox() {
   const [friction, setFriction] = useState(100)
+  const { blueprintMode } = useBlueprint()
 
   // Determine stage based on slider
   const getStage = () => {
@@ -14,36 +16,36 @@ export default function FrictionSandbox() {
   const stage = getStage()
 
   return (
-    <div className="glass-card bg-white/50 border border-black/[0.06] p-6 md:p-8 rounded-3xl w-full shadow-[0_16px_48px_rgba(24,18,12,0.03)] my-12 animate-[fadeSlideUp_0.8s_ease_0.8s_both] relative overflow-hidden">
+    <div className="glass-card bg-white/50 dark:bg-black/50 border border-black/[0.06] dark:border-white/[0.06] p-6 md:p-8 rounded-3xl w-full shadow-[0_16px_48px_rgba(24,18,12,0.03)] my-12 animate-[fadeSlideUp_0.8s_ease_0.8s_both] relative overflow-hidden">
       {/* Background radial highlight */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-black/[0.01] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-80 h-80 bg-black/[0.01] dark:bg-white/[0.01] rounded-full blur-3xl pointer-events-none" />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
         {/* Left text: The slider and description */}
         <div className="lg:col-span-5 space-y-6">
           <div>
-            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black/40">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black/40 dark:text-white/40">
               // Interactive Sandbox
             </span>
-            <h2 className="text-2xl md:text-3xl font-bricolage font-bold tracking-tight text-black mt-1">
+            <h2 className="text-2xl md:text-3xl font-bricolage font-bold tracking-tight text-black dark:text-white mt-1">
               UX Friction <span className="font-mono text-[#E25A3C] font-semibold tracking-normal text-[0.8em] inline-block px-2.5 py-0.5 border border-[#E25A3C]/20 bg-[#E25A3C]/5 rounded-xl">Solver</span>
             </h2>
           </div>
 
-          <p className="text-xs md:text-sm text-black/60 leading-relaxed font-geist">
+          <p className="text-xs md:text-sm text-black/60 dark:text-white/60 leading-relaxed font-geist">
             Drag the slider to experience how structural hierarchy, breathing room, and cognitive load management transform a cluttered interface into a conversion engine.
           </p>
 
           {/* The Slider Control */}
-          <div className="space-y-3 bg-black/[0.01] border border-black/5 rounded-2xl p-5">
+          <div className="space-y-3 bg-black/[0.01] dark:bg-white/[0.01] border border-black/5 dark:border-white/5 rounded-2xl p-5">
             <div className="flex items-center justify-between text-xs font-mono font-medium">
-              <span className="text-black/50">Cognitive Load</span>
+              <span className="text-black/50 dark:text-white/50">Cognitive Load</span>
               <span className={`px-2 py-0.5 rounded-full text-[10px] uppercase ${
                 stage === "high" 
-                  ? "bg-red-500/10 text-red-600 border border-red-500/20" 
+                  ? "bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20" 
                   : stage === "medium"
-                  ? "bg-amber-500/10 text-amber-600 border border-amber-500/20"
-                  : "bg-emerald-500/10 text-emerald-600 border border-emerald-500/20"
+                  ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
+                  : "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"
               }`}>
                 {friction}% Friction
               </span>
@@ -55,10 +57,10 @@ export default function FrictionSandbox() {
               max="100"
               value={friction}
               onChange={(e) => setFriction(Number(e.target.value))}
-              className="w-full h-1 bg-black/10 rounded-lg appearance-none cursor-pointer accent-black hover:accent-black/80 transition-all"
+              className="w-full h-1 bg-black/10 dark:bg-white/10 rounded-lg appearance-none cursor-pointer accent-black dark:accent-white hover:accent-black/80 dark:hover:accent-white/80 transition-all"
             />
 
-            <div className="flex justify-between text-[10px] font-mono text-black/40 pt-1">
+            <div className="flex justify-between text-[10px] font-mono text-black/40 dark:text-white/40 pt-1">
               <span>Optimized (0%)</span>
               <span>Raw Layout (100%)</span>
             </div>
@@ -67,10 +69,10 @@ export default function FrictionSandbox() {
           {/* Current Critique Annotation Box */}
           <div className={`p-4 rounded-2xl border transition-all duration-500 ${
             stage === "high"
-              ? "bg-red-500/[0.03] border-red-500/15 text-red-800"
+              ? "bg-red-500/[0.03] dark:bg-red-500/5 border-red-500/15 text-red-800 dark:text-red-300"
               : stage === "medium"
-              ? "bg-amber-500/[0.03] border-amber-500/15 text-amber-800"
-              : "bg-emerald-500/[0.03] border-emerald-500/15 text-emerald-800"
+              ? "bg-amber-500/[0.03] dark:bg-amber-500/5 border-amber-500/15 text-amber-800 dark:text-amber-300"
+              : "bg-emerald-500/[0.03] dark:bg-emerald-500/5 border-emerald-500/15 text-emerald-800 dark:text-emerald-300"
           }`}>
             <h4 className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 mb-1.5 font-mono">
               {stage === "high" && (
@@ -110,7 +112,7 @@ export default function FrictionSandbox() {
             {/* Morphing Component Card */}
             <div className={`transition-all duration-500 border rounded-3xl ${
               stage === "high"
-                ? "p-2 bg-neutral-900 border-yellow-600/60 shadow-lg text-neutral-400 space-y-1.5"
+                ? "p-2 bg-stone-200/95 dark:bg-neutral-900 border-red-500/20 dark:border-red-500/25 shadow-lg text-stone-600 dark:text-neutral-400 space-y-1.5"
                 : stage === "medium"
                 ? "p-5 bg-stone-100 dark:bg-stone-900 border-stone-200 dark:border-stone-800 shadow-xl text-stone-700 dark:text-stone-300 space-y-4"
                 : "p-7 glass-card bg-white/90 dark:bg-[#121214]/90 border-black/[0.06] dark:border-white/[0.06] shadow-2xl text-black dark:text-white space-y-5"
@@ -118,12 +120,12 @@ export default function FrictionSandbox() {
               
               {/* Card Header */}
               <div className={`flex items-center justify-between transition-all ${
-                stage === "high" ? "border-b border-yellow-700/30 pb-1" : "pb-0"
+                stage === "high" ? "border-b border-red-500/10 dark:border-yellow-700/30 pb-1" : "pb-0"
               }`}>
                 <div>
                   <h3 className={`font-semibold tracking-tight transition-all ${
                     stage === "high" 
-                      ? "text-xs text-white" 
+                      ? "text-xs text-black dark:text-white" 
                       : stage === "medium" 
                       ? "text-base text-stone-900 dark:text-stone-100 font-bold" 
                       : "text-lg font-bricolage font-bold text-black dark:text-white"
@@ -150,7 +152,7 @@ export default function FrictionSandbox() {
               {/* Price Details Block */}
               <div className={`transition-all rounded-2xl ${
                 stage === "high"
-                  ? "p-1.5 bg-neutral-800 border-2 border-dashed border-red-500/50"
+                  ? "p-1.5 bg-stone-300/30 dark:bg-neutral-800 border-2 border-dashed border-red-500/25 dark:border-red-500/50"
                   : stage === "medium"
                   ? "p-4 bg-stone-200/50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-700"
                   : "p-4 bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5"
@@ -158,7 +160,7 @@ export default function FrictionSandbox() {
                 <div className="flex justify-between items-center">
                   <span className={`font-geist ${
                     stage === "high" 
-                      ? "text-[10px] font-bold text-neutral-400" 
+                      ? "text-[10px] font-bold text-stone-600 dark:text-neutral-400" 
                       : stage === "medium"
                       ? "text-xs text-stone-600 dark:text-stone-400"
                       : "text-xs text-black/75 dark:text-white/75"
@@ -167,7 +169,7 @@ export default function FrictionSandbox() {
                   </span>
                   <span className={`font-semibold ${
                     stage === "high" 
-                      ? "text-xs text-white" 
+                      ? "text-xs text-black dark:text-white" 
                       : stage === "medium"
                       ? "text-sm text-stone-900 dark:text-stone-100 font-bold"
                       : "text-sm text-black dark:text-white"
@@ -215,7 +217,7 @@ export default function FrictionSandbox() {
                   value="Baskar S."
                   className={`w-full text-xs outline-none transition-all ${
                     stage === "high"
-                      ? "p-1 bg-red-950/20 text-red-300 border border-red-700 font-mono"
+                      ? "p-1 bg-red-500/5 dark:bg-red-950/20 text-red-800 dark:text-red-300 border border-red-300 dark:border-red-700 font-mono"
                       : stage === "medium"
                       ? "p-3 bg-stone-200/50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-750 rounded-xl text-stone-800 dark:text-stone-200"
                       : "p-3 bg-black/[0.01] dark:bg-white/[0.01] border border-black/5 dark:border-white/5 hover:border-black/10 dark:hover:border-white/10 rounded-xl text-black dark:text-white font-geist"
@@ -231,7 +233,7 @@ export default function FrictionSandbox() {
               }`}>
                 <button className={`w-full font-medium transition-all ${
                   stage === "high"
-                    ? "py-1 bg-neutral-700 text-yellow-600 text-[10px] uppercase font-bold border border-yellow-700"
+                    ? "py-1 bg-stone-300/50 dark:bg-neutral-700 text-stone-700 dark:text-yellow-600 text-[10px] uppercase font-bold border border-stone-400/30 dark:border-yellow-700"
                     : stage === "medium"
                     ? "py-2.5 rounded-xl border border-stone-300 dark:border-stone-700 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 text-xs text-stone-700 dark:text-stone-300"
                     : "py-3 rounded-xl border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 text-xs text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white font-mono"
@@ -252,8 +254,8 @@ export default function FrictionSandbox() {
 
             </div>
 
-            {/* Float visual indicators only in Optimized mode */}
-            {stage === "optimized" && (
+            {/* Float visual indicators only in Optimized mode and when blueprintMode is active */}
+            {stage === "optimized" && blueprintMode && (
               <>
                 {/* Visual anchor tag pointing to layout padding */}
                 <div className="absolute -left-6 top-1/2 -translate-y-1/2 flex items-center gap-1 opacity-90">

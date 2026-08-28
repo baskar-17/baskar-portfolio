@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useLocation, useParams } from "react-router-dom"
+import { Link, useLocation, useParams } from "react-router-dom"
 import CaseStudyShell from "../components/case-study/CaseStudyShell"
 import MetaGrid from "../components/case-study/MetaGrid"
 import NextProject from "../components/case-study/NextProject"
@@ -62,7 +62,10 @@ export default function CaseStudy() {
       timeline={project.caseStudy.timeline}
       navItems={NAV_ITEMS}
     >
-      <section id="overview" className="py-24 md:py-32">
+      <div className="pt-8">
+        <Link className="font-mono text-xs uppercase tracking-widest text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-colors" to="/companies">[← BACK_TO_PROJECTS]</Link>
+      </div>
+      <section id="overview" className="py-12 md:py-16">
         <div className="max-w-4xl">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)]">// Case Study</p>
           <h1 className="mt-4 text-5xl font-bricolage font-bold tracking-tight text-black dark:text-white md:text-7xl leading-tight">

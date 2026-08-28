@@ -36,19 +36,22 @@ export default function CaseStudyShell({
 
     if (!elements.length) return
 
+    const visibleSections = new Map<string, boolean>()
+
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => (a.boundingClientRect.top > b.boundingClientRect.top ? 1 : -1))
+        entries.forEach((entry) => {
+          visibleSections.set(entry.target.id, entry.isIntersecting)
+        })
 
-        if (visible[0]?.target) {
-          setActiveId(visible[0].target.id)
+        const active = ids.find((id) => visibleSections.get(id))
+        if (active) {
+          setActiveId(active)
         }
       },
       {
-        rootMargin: "-20% 0px -60% 0px",
-        threshold: [0.1, 0.4, 0.8],
+        rootMargin: "-15% 0px -40% 0px",
+        threshold: 0.15,
       },
     )
 
@@ -94,8 +97,8 @@ export default function CaseStudyShell({
 
       <section className="mx-auto max-w-[1200px] px-4 pb-16">
         <div className="grid gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
-          <aside className="hidden lg:block reveal reveal-delay-2">
-            <div className="sticky top-32 rounded-3xl border border-[color:var(--border)] glass-card p-5 text-sm text-[var(--muted)] shadow-[var(--shadow-soft)]">
+          <aside className="hidden lg:block">
+            <div className="sticky top-32 rounded-3xl border border-[color:var(--border)] glass-card p-5 text-sm text-[var(--muted)] shadow-[var(--shadow-soft)] reveal-fade reveal-delay-2">
               <div className="mb-4 text-[10px] font-mono uppercase tracking-[0.25em] text-black/40 dark:text-white/40">
                 // Contents
               </div>

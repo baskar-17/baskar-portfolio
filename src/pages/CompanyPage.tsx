@@ -8,7 +8,7 @@ export default function CompanyPage() {
   if (!company) {
     return (
       <div className="min-h-screen px-4 pt-28 pb-10 text-[var(--ink)] bg-transparent">
-        <Link className="font-mono text-xs uppercase tracking-widest text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-colors" to="/">[← BACK_HOME]</Link>
+        <Link className="font-mono text-xs uppercase tracking-widest text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-colors" to="/companies">[← BACK_TO_PROJECTS]</Link>
         <h1 className="mt-6 text-xl font-bricolage font-bold text-black dark:text-white">Company not found</h1>
         <p className="mt-2 text-[var(--muted)] font-geist text-sm">That page doesn’t exist yet.</p>
       </div>
@@ -18,7 +18,7 @@ export default function CompanyPage() {
   return (
     <div className="min-h-screen px-4 pt-28 pb-10 text-[var(--ink)] bg-transparent">
       <div className="mx-auto w-full max-w-[1200px] animate-[fadeSlideUp_0.8s_ease_both]">
-        <Link className="font-mono text-xs uppercase tracking-widest text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-colors" to="/">[← BACK_HOME]</Link>
+        <Link className="font-mono text-xs uppercase tracking-widest text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-colors" to="/companies">[← BACK_TO_PROJECTS]</Link>
 
         <div className="mt-8">
           <h1 className="text-3xl md:text-5xl font-bricolage font-bold tracking-tight text-black dark:text-white leading-tight">
