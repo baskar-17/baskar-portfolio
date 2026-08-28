@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound"
 import CaseStudyDemo from "./pages/case-studies/CaseStudyDemo"
 import CustomCursor from "./components/CustomCursor"
 import InteractiveCanvas from "./components/InteractiveCanvas"
+import Navbar from "./components/Navbar"
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
       <div className="fixed inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/50 pointer-events-none z-[1]" />
 
       <div className="relative z-10">
+        <Navbar />
         <CustomCursor />
         <Routes>
           <Route path="/" element={<Home />} />

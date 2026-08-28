@@ -4,7 +4,7 @@ import { COMPANIES } from "../data/companies"
 
 export default function CompaniesIndex() {
   return (
-    <div className="min-h-screen px-4 py-10 text-[var(--ink)]">
+    <div className="min-h-screen px-4 pt-28 pb-10 text-[var(--ink)] bg-transparent">
       <div className="mx-auto w-full max-w-[1200px] reveal">
         <Link className="link-underline" to="/">← Back home</Link>
 

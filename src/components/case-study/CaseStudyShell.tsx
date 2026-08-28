@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
 import { motion } from "framer-motion"
-import { Link } from "react-router-dom"
-import { FiArrowLeft } from "react-icons/fi"
 
 type NavItem = {
   id: string
@@ -59,14 +57,7 @@ export default function CaseStudyShell({
   }, [ids])
 
   return (
-    <div className="min-h-screen text-[var(--ink)]">
-      <header className="absolute top-0 left-0 w-full z-10 py-6 px-4">
-        <div className="mx-auto max-w-[1200px]">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--ink)]">
-            <FiArrowLeft /> Back to Home
-          </Link>
-        </div>
-      </header>
+    <div className="min-h-screen text-[var(--ink)] bg-transparent pt-20">
       {!hideIntro ? (
         <section className="mx-auto max-w-[1200px] gap-6 px-4 py-16 md:py-24">
           <div className="reveal">

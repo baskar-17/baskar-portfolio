@@ -1,137 +1,14 @@
-import { useState } from "react"
-import { ArrowRight, Menu, X } from "lucide-react"
+import { Link } from "react-router-dom"
+import { ArrowRight } from "lucide-react"
+import { WORK_ITEMS } from "../data/work"
 
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
   return (
     <div className="relative h-screen w-full overflow-hidden bg-transparent font-geist">
-
-      {/* Navbar (z-30) */}
-      <nav className="relative z-30 flex items-center justify-between px-6 py-5 md:px-12 lg:px-16">
-        {/* Left Side: Logo & Desktop Links */}
-        <div className="flex items-center gap-10">
-          <a
-            href="/"
-            className="text-lg font-semibold tracking-tight text-white sm:text-xl"
-          >
-            Baskar S.
-          </a>
-          <div className="hidden items-center gap-6 md:flex">
-            <a
-              href="/"
-              className="text-sm text-white/80 transition-colors hover:text-white"
-            >
-              Home
-            </a>
-            <a
-              href="/companies"
-              className="text-sm text-white/80 transition-colors hover:text-white"
-            >
-              Projects
-            </a>
-            <a
-              href="/contact"
-              className="text-sm text-white/80 transition-colors hover:text-white"
-            >
-              Reach Us
-            </a>
-          </div>
-        </div>
-
-        {/* Right Side: Desktop CTA / Mobile Menu Button */}
-        <div>
-          {/* Desktop Button */}
-          <a
-            href="/contact"
-            className="hidden rounded-lg bg-white px-5 py-2 text-sm font-medium text-black transition-transform hover:scale-105 md:inline-block"
-          >
-            Let's Talk
-          </a>
-
-          {/* Mobile hamburger toggle (z-50) */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="relative z-50 flex h-10 w-10 items-center justify-center rounded-full text-white transition-transform active:scale-90 md:hidden"
-            aria-label="Toggle Menu"
-          >
-            <div className="relative h-6 w-6">
-              {/* Menu Icon */}
-              <div
-                className={`absolute inset-0 transition-all duration-300 ${
-                  mobileMenuOpen
-                    ? "rotate-90 scale-0 opacity-0"
-                    : "rotate-0 scale-100 opacity-100"
-                }`}
-              >
-                <Menu className="h-6 w-6" />
-              </div>
-              {/* X Icon */}
-              <div
-                className={`absolute inset-0 transition-all duration-300 ${
-                  mobileMenuOpen
-                    ? "rotate-0 scale-100 opacity-100"
-                    : "-rotate-90 scale-0 opacity-0"
-                }`}
-              >
-                <X className="h-6 w-6" />
-              </div>
-            </div>
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Menu Overlay (z-20) */}
-      <div
-        className={`absolute inset-x-0 top-0 z-20 overflow-hidden bg-black/98 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden ${
-          mobileMenuOpen
-            ? "h-screen opacity-100"
-            : "h-0 opacity-0 pointer-events-none"
-        }`}
-      >
-        <div
-          className={`flex h-full flex-col justify-center px-8 transition-transform duration-500 ${
-            mobileMenuOpen ? "translate-y-0 opacity-100 delay-100" : "translate-y-8 opacity-0"
-          }`}
-        >
-          <div className="flex flex-col gap-6">
-            <a
-              href="/"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-3xl font-medium text-white/90 transition-colors hover:text-white"
-            >
-              Home
-            </a>
-            <a
-              href="/companies"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-3xl font-medium text-white/90 transition-colors hover:text-white"
-            >
-              Projects
-            </a>
-            <a
-              href="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-3xl font-medium text-white/90 transition-colors hover:text-white"
-            >
-              Reach Us
-            </a>
-
-            <a
-              href="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="mt-6 inline-block rounded-full bg-white px-8 py-3.5 text-center text-base font-medium text-black transition-transform hover:scale-105"
-            >
-              Let's Talk
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Hero Content (z-10) */}
-      <div className="relative z-10 flex h-[calc(100vh-80px)] flex-col justify-between px-6 pb-10 pt-12 sm:pb-12 sm:pt-16 md:px-12 md:pb-16 md:pt-20 lg:px-16">
+      <div className="relative z-10 flex h-full flex-col justify-between px-6 pb-8 pt-24 sm:pb-12 md:px-12 lg:px-16">
         {/* Top Section */}
-        <div className="max-w-3xl">
+        <div className="max-w-3xl pt-6 sm:pt-10">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white/90 sm:mb-6 sm:text-sm animate-[fadeSlideUp_0.8s_ease_0.2s_both]">
             Senior UI/UX & Product Designer
           </p>
@@ -143,17 +20,48 @@ export default function Home() {
         </div>
 
         {/* Bottom Section */}
-        <div>
-          <p className="mb-5 max-w-sm text-sm leading-relaxed text-white/70 sm:mb-6 sm:max-w-lg sm:text-base md:text-lg animate-[fadeSlideUp_0.8s_ease_0.7s_both]">
-            I am Baskar S, a Chennai-based designer. Partnering with teams at SportsGravy, BrainVault, and MyKinderPass to ship clean, workflow-driven web and mobile applications.
-          </p>
-          <a
-            href="/companies"
-            className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 sm:px-6 sm:py-3 text-sm font-medium text-black transition-transform hover:scale-105 animate-[fadeSlideUp_0.8s_ease_0.9s_both]"
-          >
-            Explore Work
-            <ArrowRight className="h-4 w-4" />
-          </a>
+        <div className="mt-auto space-y-6 sm:space-y-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <p className="max-w-md text-xs leading-relaxed text-white/70 sm:text-sm md:text-base animate-[fadeSlideUp_0.8s_ease_0.7s_both]">
+              I am Baskar S, a Chennai-based designer. Partnering with teams at SportsGravy, BrainVault, and MyKinderPass to ship clean, workflow-driven web and mobile applications.
+            </p>
+            <Link
+              to="/companies"
+              className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-xs font-medium text-black transition-transform hover:scale-105 shrink-0 self-start sm:self-auto animate-[fadeSlideUp_0.8s_ease_0.8s_both]"
+            >
+              All Experience
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+
+          {/* Featured Case Study Glassmorphism Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 animate-[fadeSlideUp_0.8s_ease_0.9s_both]">
+            {WORK_ITEMS.slice(0, 3).map((project) => (
+              <Link
+                key={project.slug}
+                to={`/work/${project.slug}`}
+                className="glass-card bg-white/[0.02] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 p-5 rounded-2xl transition-all duration-300 hover:-translate-y-1 block shadow-[0_8px_32px_rgba(0,0,0,0.3)] group"
+              >
+                <div className="flex flex-col h-full justify-between min-h-[110px]">
+                  <div>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-white/40 block mb-1">
+                      {project.productType}
+                    </span>
+                    <h3 className="text-base font-semibold text-white group-hover:text-white/90 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="mt-1.5 text-[11px] text-white/60 line-clamp-2 leading-relaxed">
+                      {project.caseStudy.overview}
+                    </p>
+                  </div>
+                  <div className="mt-3 flex items-center gap-1 text-[11px] font-medium text-white/80 group-hover:text-white transition-colors">
+                    Read Case Study
+                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </div>

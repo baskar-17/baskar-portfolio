@@ -7,7 +7,7 @@ export default function CompanyPage() {
 
   if (!company) {
     return (
-      <div className="min-h-screen px-4 py-10 text-[var(--ink)]">
+      <div className="min-h-screen px-4 pt-28 pb-10 text-[var(--ink)] bg-transparent">
         <Link className="link-underline" to="/">← Back home</Link>
         <h1 className="mt-6 text-2xl font-semibold">Company not found</h1>
         <p className="mt-2 text-[var(--muted)]">That page doesn’t exist yet.</p>
@@ -16,7 +16,7 @@ export default function CompanyPage() {
   }
 
   return (
-    <div className="min-h-screen px-4 py-10 text-[var(--ink)]">
+    <div className="min-h-screen px-4 pt-28 pb-10 text-[var(--ink)] bg-transparent">
       <div className="mx-auto w-full max-w-[1200px] reveal">
         <Link className="link-underline" to="/">← Back home</Link>
 

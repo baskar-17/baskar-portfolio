@@ -1,8 +1,7 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { FaLinkedin, FaBehance, FaInstagram } from "react-icons/fa"
-import { FiMail, FiPhone, FiArrowLeft, FiMapPin, FiCheckCircle, FiAlertCircle } from "react-icons/fi"
+import { FiMail, FiPhone, FiMapPin, FiCheckCircle, FiAlertCircle } from "react-icons/fi"
 import { collection, addDoc } from "firebase/firestore"
 import { db } from "../lib/firebase"
 
@@ -158,22 +157,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen text-[var(--ink)] bg-transparent">
-      {/* Header / Back Link */}
-      <header className="py-6 px-4 border-b border-[color:var(--border)] glass-card sticky top-0 z-30">
-        <div className="mx-auto max-w-[1200px] flex items-center justify-between">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--ink)]"
-          >
-            <FiArrowLeft /> Back to Home
-          </Link>
-          <span className="text-xs font-mono uppercase tracking-wider text-[var(--muted)]">
-            Contact Page
-          </span>
-        </div>
-      </header>
-
+    <div className="min-h-screen text-[var(--ink)] bg-transparent pt-20">
       <main className="mx-auto max-w-[1200px] px-4 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
@@ -369,7 +353,7 @@ export default function Contact() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full h-12 flex items-center justify-center rounded-xl bg-[color:var(--ink)] text-white font-medium hover:bg-[#252525] disabled:opacity-50 transition-colors shadow-sm cursor-pointer"
+                      className="w-full h-12 flex items-center justify-center rounded-xl bg-white text-black font-medium hover:bg-neutral-200 disabled:opacity-50 transition-colors shadow-sm cursor-pointer"
                     >
                       {isSubmitting ? "Sending message..." : "Send message"}
                     </button>
