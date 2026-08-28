@@ -96,7 +96,7 @@ export default function CaseStudyShell({
         <div className="grid gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
           <aside className="hidden lg:block reveal reveal-delay-2">
             <div className="sticky top-32 rounded-3xl border border-[color:var(--border)] glass-card p-5 text-sm text-[var(--muted)] shadow-[var(--shadow-soft)]">
-              <div className="mb-4 text-[10px] font-mono uppercase tracking-[0.25em] text-white/50">
+              <div className="mb-4 text-[10px] font-mono uppercase tracking-[0.25em] text-black/40 dark:text-white/40">
                 // Contents
               </div>
               <nav className="space-y-1 font-mono">
@@ -109,8 +109,8 @@ export default function CaseStudyShell({
                       whileHover={{ x: 4 }}
                       transition={{ type: "spring", stiffness: 400, damping: 25 }}
                       className={`block rounded-xl px-3 py-2 text-[10px] uppercase tracking-widest font-semibold transition-all duration-300 ${isActive
-                        ? "bg-white text-black shadow-md"
-                        : "text-white/60 hover:bg-[color:var(--surface-muted)] hover:text-white"
+                        ? "bg-black dark:bg-white text-white dark:text-black shadow-md"
+                        : "text-black/60 dark:text-white/60 hover:bg-[color:var(--surface-muted)] hover:text-black dark:hover:text-white"
                         }`}
                     >
                       {item.label}

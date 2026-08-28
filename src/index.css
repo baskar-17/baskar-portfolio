@@ -33,6 +33,34 @@
   --shadow-glass: inset 0 0 0 1px rgba(255, 255, 255, 0.6), 0 8px 32px rgba(24, 18, 12, 0.03);
 }
 
+.dark {
+  color-scheme: dark;
+
+  /* Core Backgrounds */
+  --page-bg: #0A0A0A;
+  --page-bg-strong: #020202;
+
+  /* Surfaces */
+  --surface: #121214;
+  --surface-muted: #1A1A1E;
+  --surface-glass: rgba(10, 10, 12, 0.8);
+
+  /* Typography */
+  --ink: #FAF9F6;
+  --muted: #8E8D86;
+
+  /* Accents & Borders */
+  --border: rgba(255, 255, 255, 0.05);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --accent: #E25A3C;
+  --accent-soft: rgba(226, 90, 60, 0.1);
+
+  /* Shadows */
+  --shadow-soft: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
+  --shadow-strong: 0 12px 48px -4px rgba(0, 0, 0, 0.6);
+  --shadow-glass: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -52,6 +80,12 @@ body {
   position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.dark body {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
 }
 
 #root {
@@ -318,6 +352,13 @@ a {
     linear-gradient(90deg, rgba(226, 90, 60, 0.05) 1px, transparent 1px) !important;
   background-size: 20px 20px !important;
   background-color: #FAF9F5 !important;
+}
+
+.dark.blueprint-active {
+  background-color: #0A0A0A !important;
+  background-image: 
+    linear-gradient(rgba(226, 90, 60, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(226, 90, 60, 0.08) 1px, transparent 1px) !important;
 }
 
 .blueprint-active::after {
