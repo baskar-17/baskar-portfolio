@@ -167,8 +167,8 @@ export default function Contact() {
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
                 // Get in touch
               </p>
-              <h1 className="mt-4 text-4xl font-bricolage font-bold tracking-tight text-white md:text-5xl leading-tight">
-                Let&apos;s build something <span className="font-mono text-emerald-400 font-semibold tracking-normal text-[0.8em] inline-block px-2.5 py-0.5 border border-emerald-500/20 bg-emerald-500/5 rounded-xl">simple</span>.
+              <h1 className="mt-4 text-4xl font-bricolage font-bold tracking-tight text-black dark:text-white md:text-5xl leading-tight">
+                Let&apos;s build something <span className="font-mono text-emerald-400 dark:text-emerald-500 font-semibold tracking-normal text-[0.8em] inline-block px-2.5 py-0.5 border border-emerald-500/20 bg-emerald-500/5 rounded-xl">simple</span>.
               </h1>
               <p className="mt-6 text-sm md:text-base leading-relaxed text-[var(--muted)] font-geist">
                 If you are hiring for a Senior UI/UX Designer, Product Designer, or have a complex workflow design problem you need solved, I would be glad to connect.
@@ -268,7 +268,7 @@ export default function Contact() {
                   transition={{ duration: 0.4 }}
                   className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] p-8 shadow-[var(--shadow-soft)]"
                 >
-                  <h2 className="text-lg font-bricolage font-bold text-white mb-6 border-b border-[color:var(--border)] pb-4 uppercase tracking-wider">
+                  <h2 className="text-lg font-bricolage font-bold text-black dark:text-white mb-6 border-b border-[color:var(--border)] pb-4 uppercase tracking-wider">
                     // Send a message
                   </h2>
 
@@ -353,7 +353,7 @@ export default function Contact() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full h-12 flex items-center justify-center rounded-xl bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-neutral-200 disabled:opacity-50 transition-colors shadow-sm cursor-pointer"
+                      className="w-full h-12 flex items-center justify-center rounded-xl bg-black dark:bg-white text-white dark:text-black font-mono text-xs uppercase tracking-wider font-semibold hover:opacity-90 disabled:opacity-50 transition-all shadow-sm cursor-pointer"
                     >
                       {isSubmitting ? "SENDING..." : "SEND_MESSAGE"}
                     </button>

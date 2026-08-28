@@ -31,7 +31,7 @@ export default function StorySection({
         }
       >
         <header className={centered ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
-          <h2 className="text-2xl font-bricolage font-bold tracking-tight text-white md:text-3xl leading-tight">
+          <h2 className="text-2xl font-bricolage font-bold tracking-tight text-black dark:text-white md:text-3xl leading-tight">
             {title}
           </h2>
           {subtitle ? (

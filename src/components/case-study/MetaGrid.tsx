@@ -21,10 +21,10 @@ export default function MetaGrid({ items }: MetaGridProps) {
           whileHover={{ y: -2 }}
           className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 shadow-[var(--shadow-soft)] transition-colors hover:bg-[var(--surface-muted)]"
         >
-          <dt className="text-[9px] font-mono uppercase tracking-[0.2em] text-white/40">
+          <dt className="text-[9px] font-mono uppercase tracking-[0.2em] text-black/40 dark:text-white/40">
             // {item.label}
           </dt>
-          <dd className="mt-2 text-xs md:text-sm font-semibold leading-relaxed text-white">
+          <dd className="mt-2 text-xs md:text-sm font-semibold leading-relaxed text-black dark:text-white">
             {item.value}
           </dd>
         </motion.div>

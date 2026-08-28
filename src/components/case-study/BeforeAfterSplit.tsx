@@ -31,7 +31,7 @@ export default function BeforeAfterSplit({
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--surface-muted)] to-transparent opacity-50 pointer-events-none" />
         <div className="relative z-10">
           <div className="inline-flex items-center rounded-full bg-[var(--ink)] px-3 py-1.5 shadow-sm">
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white">
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white dark:text-black">
               After
             </p>
           </div>

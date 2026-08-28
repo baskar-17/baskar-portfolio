@@ -162,7 +162,7 @@ a {
 
 /* Surfaces */
 .glass-card {
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid var(--border);
   background: var(--surface-glass);
   box-shadow: var(--shadow-glass);
   backdrop-filter: blur(24px);

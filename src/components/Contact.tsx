@@ -62,7 +62,7 @@ export default function Contact() {
         <div className="relative z-10 mt-8">
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-[var(--ink)] px-8 py-3.5 text-sm font-semibold text-white shadow-[0_4px_14px_0_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(0,0,0,0.15)] hover:bg-[#252525]"
+            className="inline-flex items-center justify-center rounded-full bg-[var(--ink)] px-8 py-3.5 text-sm font-semibold text-white dark:text-black shadow-[0_4px_14px_0_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(0,0,0,0.15)] hover:opacity-90"
           >
             Start a conversation
           </Link>
