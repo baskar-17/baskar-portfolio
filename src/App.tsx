@@ -6,25 +6,20 @@ import CompaniesIndex from "./pages/CompaniesIndex"
 import CompanyPage from "./pages/CompanyPage"
 import NotFound from "./pages/NotFound"
 import CaseStudyDemo from "./pages/case-studies/CaseStudyDemo"
-import CustomCursor from "./components/CustomCursor"
-import InteractiveCanvas from "./components/InteractiveCanvas"
 import Navbar from "./components/Navbar"
+import Preloader from "./components/Preloader"
 import { BlueprintProvider, useBlueprint } from "./context/BlueprintContext"
 
 function AppContent() {
   const { blueprintMode } = useBlueprint()
 
   return (
-    <div className={`relative min-h-screen w-full bg-black font-geist text-white overflow-x-hidden selection:bg-white/10 selection:text-white transition-colors duration-500 ${blueprintMode ? "blueprint-active" : ""}`}>
-      {/* Global 3D Interactive Grid Canvas Background */}
-      <InteractiveCanvas />
-
-      {/* Global Dark Ambient Vignette (Ensures contrast across all pages) */}
-      <div className="fixed inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/50 pointer-events-none z-[1]" />
+    <div className={`relative min-h-screen w-full bg-[#FAF9F5] font-geist text-black overflow-x-hidden selection:bg-black/5 selection:text-black transition-colors duration-500 ${blueprintMode ? "blueprint-active" : ""}`}>
+      {/* Boot Loading Micro-animation */}
+      <Preloader />
 
       <div className="relative z-10">
         <Navbar />
-        <CustomCursor />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />

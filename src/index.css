@@ -6,31 +6,31 @@
 
 :root {
   font-family: "Geist", "Inter", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
-  color-scheme: dark;
+  color-scheme: light;
 
   /* Core Backgrounds */
-  --page-bg: #000000;
-  --page-bg-strong: #080808;
+  --page-bg: #FAF9F5;
+  --page-bg-strong: #FFFFFF;
 
   /* Surfaces */
-  --surface: #0a0a0c;
-  --surface-muted: #151518;
-  --surface-glass: rgba(10, 10, 12, 0.7);
+  --surface: #FFFFFF;
+  --surface-muted: #F4F3EE;
+  --surface-glass: rgba(250, 249, 245, 0.7);
 
   /* Typography */
-  --ink: #FFFFFF;
-  --muted: #A1A1AA;
+  --ink: #111111;
+  --muted: #72716A;
 
   /* Accents & Borders */
-  --border: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.15);
-  --accent: #FFFFFF;
-  --accent-soft: rgba(255, 255, 255, 0.04);
+  --border: rgba(0, 0, 0, 0.05);
+  --border-strong: rgba(0, 0, 0, 0.12);
+  --accent: #E25A3C;
+  --accent-soft: rgba(226, 90, 60, 0.05);
 
   /* Shadows */
-  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-  --shadow-strong: 0 12px 32px -4px rgba(0, 0, 0, 0.8);
-  --shadow-glass: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-soft: 0 4px 20px -2px rgba(24, 18, 12, 0.02);
+  --shadow-strong: 0 12px 32px -4px rgba(24, 18, 12, 0.04);
+  --shadow-glass: inset 0 0 0 1px rgba(255, 255, 255, 0.6), 0 8px 32px rgba(24, 18, 12, 0.03);
 }
 
 html {
@@ -43,6 +43,10 @@ section[id] {
 
 body {
   background: var(--page-bg);
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
   color: var(--ink);
   min-height: 100%;
   position: relative;
@@ -296,22 +300,6 @@ a {
   }
 }
 
-@media (min-width: 768px) {
-  body {
-    cursor: none;
-  }
-  a, button, select, input, textarea, [role="button"], .cursor-pointer {
-    cursor: none;
-  }
-}
-
-/* Foldcraft styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 @keyframes fadeSlideUp {
   from {
     opacity: 0;
@@ -326,10 +314,10 @@ a {
 /* System Blueprint Mode styling */
 .blueprint-active {
   background-image: 
-    linear-gradient(rgba(239, 68, 68, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(239, 68, 68, 0.04) 1px, transparent 1px) !important;
+    linear-gradient(rgba(226, 90, 60, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(226, 90, 60, 0.05) 1px, transparent 1px) !important;
   background-size: 20px 20px !important;
-  background-color: #020204 !important;
+  background-color: #FAF9F5 !important;
 }
 
 .blueprint-active::after {
