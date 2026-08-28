@@ -23,6 +23,10 @@ export default function CaseStudy() {
   const location = useLocation()
   const project = WORK_ITEMS.find((p) => p.slug === slug)
 
+  const fromProjects = location.state?.from === "projects"
+  const backPath = fromProjects ? "/companies" : "/"
+  const backLabel = fromProjects ? "[← BACK_TO_PROJECTS]" : "[← BACK_HOME]"
+
   useEffect(() => {
     const state = location.state as { preserveScrollPosition?: boolean } | null
     const shouldPreserve = Boolean(state?.preserveScrollPosition)
@@ -63,7 +67,7 @@ export default function CaseStudy() {
       navItems={NAV_ITEMS}
     >
       <div className="pt-8">
-        <Link className="font-mono text-xs uppercase tracking-widest text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-colors" to="/companies">[← BACK_TO_PROJECTS]</Link>
+        <Link className="font-mono text-xs uppercase tracking-widest text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-colors" to={backPath}>{backLabel}</Link>
       </div>
       <section id="overview" className="py-12 md:py-16">
         <div className="max-w-4xl">

@@ -38,6 +38,7 @@ export default function CompaniesCards({ items }: { items: CompanyData[] }) {
         >
           <Link
             to={`/companies/${c.slug}`}
+            state={{ from: "projects" }}
             className="group relative flex items-start gap-5 rounded-2xl glass-card bg-white/50 dark:bg-black/50 border border-black/[0.06] dark:border-white/[0.06] hover:border-black/[0.12] dark:hover:border-white/[0.12] p-6 transition-all duration-300 hover:-translate-y-1 block shadow-[0_8px_32px_rgba(24,18,12,0.02)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.1)]"
           >
             <Logo company={c.company} logoSrc={c.logoSrc} />

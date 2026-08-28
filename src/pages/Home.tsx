@@ -77,6 +77,7 @@ export default function Home() {
               <Link
                 key={project.slug}
                 to={`/work/${project.slug}`}
+                state={{ from: "home" }}
                 className="glass-card bg-white/50 dark:bg-black/50 hover:bg-white dark:hover:bg-[#121214] border border-black/[0.06] dark:border-white/[0.06] hover:border-black/[0.12] dark:hover:border-white/[0.12] p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1 block shadow-[0_8px_32px_rgba(24,18,12,0.02)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] group relative overflow-hidden"
               >
                 {/* Floating Index Identifier */}

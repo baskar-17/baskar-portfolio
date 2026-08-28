@@ -367,6 +367,7 @@ a {
   background-color: #FAF9F5 !important;
 }
 
+.dark .blueprint-active,
 .dark.blueprint-active {
   background-color: #0A0A0A !important;
   background-image: 

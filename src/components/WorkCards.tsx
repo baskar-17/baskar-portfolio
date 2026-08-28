@@ -16,7 +16,7 @@ export default function WorkCards({ items }: { items: WorkItem[] }) {
         >
           <Link
             to={`/work/${item.slug}`}
-            state={{ preserveScrollPosition: true }}
+            state={{ preserveScrollPosition: true, from: "projects" }}
             onClick={() => {
               if (typeof window !== "undefined") {
                 sessionStorage.setItem("portfolio:homeScrollY", String(window.scrollY))
