@@ -64,11 +64,11 @@ export default function CaseStudy() {
     >
       <section id="overview" className="py-24 md:py-32">
         <div className="max-w-4xl">
-          <p className="text-xs uppercase tracking-[0.3em] text-[var(--muted)]">Case Study</p>
-          <h1 className="mt-4 text-5xl font-light tracking-tight text-[var(--ink)] md:text-7xl">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)]">// Case Study</p>
+          <h1 className="mt-4 text-5xl font-bricolage font-bold tracking-tight text-white md:text-7xl leading-tight">
             {project.title}
           </h1>
-          <p className="mt-6 text-xl leading-relaxed text-[var(--muted)] md:text-2xl">
+          <p className="mt-6 text-lg md:text-xl leading-relaxed text-[var(--muted)] font-geist">
             {project.caseStudy.overview}
           </p>
         </div>

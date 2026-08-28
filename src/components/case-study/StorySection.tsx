@@ -31,11 +31,11 @@ export default function StorySection({
         }
       >
         <header className={centered ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
-          <h2 className="text-3xl font-semibold tracking-tight text-[var(--ink)] md:text-5xl">
+          <h2 className="text-2xl font-bricolage font-bold tracking-tight text-white md:text-3xl leading-tight">
             {title}
           </h2>
           {subtitle ? (
-            <p className="mt-4 text-base leading-relaxed text-[var(--muted)] md:text-lg">
+            <p className="mt-3 text-sm md:text-base leading-relaxed text-[var(--muted)] font-geist">
               {subtitle}
             </p>
           ) : null}

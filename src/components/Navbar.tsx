@@ -25,20 +25,20 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           to="/"
-          className="text-lg font-semibold tracking-tight text-white sm:text-xl font-geist hover:opacity-85 transition-opacity"
+          className="text-xl font-extrabold tracking-tight text-white font-bricolage hover:opacity-85 transition-opacity"
         >
-          Baskar S.
+          Baskar S<span className="text-emerald-400">.</span>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-8 md:flex font-mono">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path
             return (
               <Link
                 key={item.label}
                 to={item.path}
-                className={`text-sm font-medium transition-colors hover:text-white ${
+                className={`text-xs uppercase tracking-widest transition-colors hover:text-white ${
                   isActive ? "text-white" : "text-white/60"
                 }`}
               >
@@ -49,11 +49,11 @@ export default function Navbar() {
         </nav>
 
         {/* Right CTA Button & Blueprint Toggle (Desktop) */}
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="hidden items-center gap-4 md:flex font-mono">
           {/* Blueprint Mode Toggle */}
           <button
             onClick={() => setBlueprintMode(!blueprintMode)}
-            className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider border transition-all duration-300 ${
+            className={`flex items-center gap-2 rounded-full px-4 py-2 text-[10px] uppercase tracking-wider border transition-all duration-300 ${
               blueprintMode
                 ? "bg-red-500/10 border-red-500/30 text-red-400"
                 : "bg-white/5 border-white/10 text-white/75 hover:bg-white/10"
@@ -68,7 +68,7 @@ export default function Navbar() {
 
           <Link
             to="/contact"
-            className="rounded-full bg-white px-5 py-2 text-sm font-medium text-black transition-transform hover:scale-105 inline-block"
+            className="rounded-full bg-white px-5 py-2 text-[11px] uppercase tracking-wider font-semibold text-black transition-transform hover:scale-105 inline-block"
           >
             Let's Talk
           </Link>
@@ -109,7 +109,7 @@ export default function Navbar() {
           mobileMenuOpen ? "max-h-[350px] opacity-100 py-6 px-8" : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 font-mono">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path
             return (
@@ -117,7 +117,7 @@ export default function Navbar() {
                 key={item.label}
                 to={item.path}
                 onClick={handleLinkClick}
-                className={`text-xl font-medium transition-colors hover:text-white ${
+                className={`text-base uppercase tracking-widest transition-colors hover:text-white ${
                   isActive ? "text-white" : "text-white/60"
                 }`}
               >
@@ -129,7 +129,7 @@ export default function Navbar() {
           {/* Blueprint Mode Toggle (Mobile) */}
           <button
             onClick={() => setBlueprintMode(!blueprintMode)}
-            className={`flex items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold uppercase tracking-wider border transition-all duration-300 w-full ${
+            className={`flex items-center justify-center gap-2 rounded-xl py-3 text-xs uppercase tracking-wider border transition-all duration-300 w-full ${
               blueprintMode
                 ? "bg-red-500/10 border-red-500/30 text-red-400"
                 : "bg-white/5 border-white/10 text-white/75"
@@ -145,7 +145,7 @@ export default function Navbar() {
           <Link
             to="/contact"
             onClick={handleLinkClick}
-            className="mt-2 rounded-xl bg-white py-3 text-center text-base font-medium text-black transition-transform hover:scale-105 block"
+            className="mt-2 rounded-xl bg-white py-3 text-center text-sm uppercase tracking-wider font-semibold text-black transition-transform hover:scale-105 block"
           >
             Let's Talk
           </Link>

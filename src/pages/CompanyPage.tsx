@@ -8,9 +8,9 @@ export default function CompanyPage() {
   if (!company) {
     return (
       <div className="min-h-screen px-4 pt-28 pb-10 text-[var(--ink)] bg-transparent">
-        <Link className="link-underline" to="/">← Back home</Link>
-        <h1 className="mt-6 text-2xl font-semibold">Company not found</h1>
-        <p className="mt-2 text-[var(--muted)]">That page doesn’t exist yet.</p>
+        <Link className="font-mono text-xs uppercase tracking-widest text-white/50 hover:text-white transition-colors" to="/">[← BACK_HOME]</Link>
+        <h1 className="mt-6 text-xl font-bricolage font-bold text-white">Company not found</h1>
+        <p className="mt-2 text-[var(--muted)] font-geist text-sm">That page doesn’t exist yet.</p>
       </div>
     )
   }
@@ -18,10 +18,10 @@ export default function CompanyPage() {
   return (
     <div className="min-h-screen px-4 pt-28 pb-10 text-[var(--ink)] bg-transparent">
       <div className="mx-auto w-full max-w-[1200px] reveal">
-        <Link className="link-underline" to="/">← Back home</Link>
+        <Link className="font-mono text-xs uppercase tracking-widest text-white/50 hover:text-white transition-colors" to="/">[← BACK_HOME]</Link>
 
-        <div className="mt-6">
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
+        <div className="mt-8">
+          <h1 className="text-3xl md:text-5xl font-bricolage font-bold tracking-tight text-white leading-tight">
             {company.company}
           </h1>
 

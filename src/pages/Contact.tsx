@@ -164,13 +164,13 @@ export default function Contact() {
           {/* Left Column: Direct Contact Information */}
           <div className="lg:col-span-5 space-y-8">
             <div className="reveal">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--muted)]">
-                Get in touch
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+                // Get in touch
               </p>
-              <h1 className="mt-4 text-4xl font-light tracking-tight text-[var(--ink)] md:text-5xl leading-tight">
-                Let&apos;s build something <span className="font-script italic text-white/90 font-light tracking-wide text-[1.2em] inline-block px-1">simple</span>.
+              <h1 className="mt-4 text-4xl font-bricolage font-bold tracking-tight text-white md:text-5xl leading-tight">
+                Let&apos;s build something <span className="font-mono text-emerald-400 font-semibold tracking-normal text-[0.8em] inline-block px-2.5 py-0.5 border border-emerald-500/20 bg-emerald-500/5 rounded-xl">simple</span>.
               </h1>
-              <p className="mt-6 text-base leading-relaxed text-[var(--muted)]">
+              <p className="mt-6 text-sm md:text-base leading-relaxed text-[var(--muted)] font-geist">
                 If you are hiring for a Senior UI/UX Designer, Product Designer, or have a complex workflow design problem you need solved, I would be glad to connect.
               </p>
             </div>
@@ -268,14 +268,14 @@ export default function Contact() {
                   transition={{ duration: 0.4 }}
                   className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] p-8 shadow-[var(--shadow-soft)]"
                 >
-                  <h2 className="text-2xl font-semibold tracking-tight text-[var(--ink)] mb-6 border-b border-[color:var(--border)] pb-4">
-                    Send a message
+                  <h2 className="text-lg font-bricolage font-bold text-white mb-6 border-b border-[color:var(--border)] pb-4 uppercase tracking-wider">
+                    // Send a message
                   </h2>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Name */}
                     <div className="space-y-2">
-                      <label htmlFor="name" className="block text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+                      <label htmlFor="name" className="block text-[10px] font-mono uppercase tracking-wider text-[var(--muted)]">
                         Your Name *
                       </label>
                       <input
@@ -285,13 +285,13 @@ export default function Contact() {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full h-11 px-4 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] focus:border-[var(--accent)] outline-none transition text-[var(--ink)]"
+                        className="w-full h-11 px-4 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] focus:border-[var(--accent)] outline-none transition text-[var(--ink)] text-sm font-geist"
                       />
                     </div>
 
                     {/* Email */}
                     <div className="space-y-2">
-                      <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+                      <label htmlFor="email" className="block text-[10px] font-mono uppercase tracking-wider text-[var(--muted)]">
                         Email Address *
                       </label>
                       <input
@@ -301,13 +301,13 @@ export default function Contact() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full h-11 px-4 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] focus:border-[var(--accent)] outline-none transition text-[var(--ink)]"
+                        className="w-full h-11 px-4 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] focus:border-[var(--accent)] outline-none transition text-[var(--ink)] text-sm font-geist"
                       />
                     </div>
 
                     {/* Enquiry Type */}
                     <div className="space-y-2">
-                      <label htmlFor="subject" className="block text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+                      <label htmlFor="subject" className="block text-[10px] font-mono uppercase tracking-wider text-[var(--muted)]">
                         Subject / Reason *
                       </label>
                       <select
@@ -316,7 +316,7 @@ export default function Contact() {
                         required
                         value={formData.subject}
                         onChange={handleChange}
-                        className="w-full h-11 px-4 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] focus:border-[var(--accent)] outline-none transition text-sm text-[var(--ink)]"
+                        className="w-full h-11 px-4 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] focus:border-[var(--accent)] outline-none transition text-sm text-[var(--ink)] font-geist"
                       >
                         <option value="fulltime">Full-time opportunity</option>
                         <option value="freelance">Freelance project</option>
@@ -328,7 +328,7 @@ export default function Contact() {
 
                     {/* Message */}
                     <div className="space-y-2">
-                      <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+                      <label htmlFor="message" className="block text-[10px] font-mono uppercase tracking-wider text-[var(--muted)]">
                         Message *
                       </label>
                       <textarea
@@ -339,12 +339,12 @@ export default function Contact() {
                         value={formData.message}
                         onChange={handleChange}
                         placeholder="Tell me a little about what you'd like to discuss."
-                        className="w-full p-4 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] focus:border-[var(--accent)] outline-none transition resize-y text-[var(--ink)]"
+                        className="w-full p-4 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] focus:border-[var(--accent)] outline-none transition resize-y text-[var(--ink)] text-sm font-geist"
                       />
                     </div>
 
                     {submitStatus === "error" && (
-                      <div className="flex items-center gap-2 p-4 rounded-xl bg-red-500/10 text-red-600 text-sm border border-red-500/20">
+                      <div className="flex items-center gap-2 p-4 rounded-xl bg-red-500/10 text-red-600 text-sm border border-red-500/20 font-mono text-xs">
                         <FiAlertCircle className="text-lg shrink-0" />
                         <span>{errorMessage}</span>
                       </div>
@@ -353,9 +353,9 @@ export default function Contact() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full h-12 flex items-center justify-center rounded-xl bg-white text-black font-medium hover:bg-neutral-200 disabled:opacity-50 transition-colors shadow-sm cursor-pointer"
+                      className="w-full h-12 flex items-center justify-center rounded-xl bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-neutral-200 disabled:opacity-50 transition-colors shadow-sm cursor-pointer"
                     >
-                      {isSubmitting ? "Sending message..." : "Send message"}
+                      {isSubmitting ? "SENDING..." : "SEND_MESSAGE"}
                     </button>
                   </form>
                 </motion.div>

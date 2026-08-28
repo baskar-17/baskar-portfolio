@@ -4,69 +4,100 @@ import { WORK_ITEMS } from "../data/work"
 import FrictionSandbox from "../components/FrictionSandbox"
 
 export default function Home() {
+  const rails = [
+    { label: "Currently", value: "Lead Designer at SportsGravy" },
+    { label: "Previously", value: "BrainVault · MyKinderPass · Smytten" },
+    { label: "Expertise", value: "Complex Workflows · Design Systems" },
+    { label: "Based in", value: "Chennai, India" },
+  ]
+
   return (
-    <div className="relative min-h-screen w-full overflow-y-auto bg-transparent font-geist pb-20 pt-28 px-6 md:px-12 lg:px-16">
+    <div className="relative min-h-screen w-full overflow-y-auto bg-transparent pb-24 pt-28 px-6 md:px-12 lg:px-16">
       <div className="max-w-5xl mx-auto w-full flex flex-col gap-16 md:gap-24">
         
         {/* Top Hero Section */}
-        <div className="max-w-3xl">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white/90 sm:mb-6 sm:text-sm animate-[fadeSlideUp_0.8s_ease_0.2s_both]">
-            Senior UI/UX & Product Designer
+        <div className="max-w-4xl space-y-8">
+          <div>
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-white/50 animate-[fadeSlideUp_0.8s_ease_0.2s_both]">
+              // Senior UI/UX & Product Designer · 5+ Years
+            </p>
+            <h1 className="text-4xl font-bricolage font-bold leading-[1.15] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl animate-[fadeSlideUp_0.8s_ease_0.4s_both]">
+              Designing <span className="font-mono text-emerald-400 font-semibold tracking-normal text-[0.8em] inline-block px-3 py-1 border border-emerald-500/20 bg-emerald-500/5 rounded-2xl">systems</span> <br />
+              that connect research <br />
+              with <span className="font-mono text-blue-400 font-semibold tracking-normal text-[0.8em] inline-block px-3 py-1 border border-blue-500/20 bg-blue-500/5 rounded-2xl">interface.</span>
+            </h1>
+          </div>
+
+          <p className="max-w-2xl text-sm leading-relaxed text-white/70 sm:text-base md:text-lg animate-[fadeSlideUp_0.8s_ease_0.6s_both] font-geist">
+            I partner with high-growth teams to structure complex data into simple, focused workflows. Driven by visual precision, design systems, and rigorous usability decisions.
           </p>
-          <h1 className="text-4xl font-light leading-[1.2] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl animate-[fadeSlideUp_0.8s_ease_0.4s_both]">
-            Designing <span className="font-script italic text-white/90 font-light tracking-wide text-[1.2em] inline-block px-2">products</span> <br />
-            that turn complexity <br />
-            into <span className="font-script italic text-white/90 font-light tracking-wide text-[1.2em] inline-block px-2">clarity.</span>
-          </h1>
-          <p className="mt-8 max-w-xl text-sm leading-relaxed text-white/70 sm:text-base md:text-lg animate-[fadeSlideUp_0.8s_ease_0.6s_both]">
-            I am Baskar S, a Chennai-based designer. Partnering with teams at SportsGravy, BrainVault, and MyKinderPass to ship clean, workflow-driven web and mobile applications.
-          </p>
+
+          {/* Sarthak-style Metadata Rails */}
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-0 border-t border-b border-white/10 divide-y sm:divide-y-0 sm:divide-x divide-white/10 mt-12 animate-[fadeSlideUp_0.8s_ease_0.7s_both]">
+            {rails.map((rail, idx) => (
+              <div key={idx} className="py-5 px-0 sm:px-6 first:pl-0 last:pr-0 flex flex-col gap-1.5 justify-start">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-white/40">// {rail.label}</span>
+                <span className="font-geist text-xs md:text-sm font-medium text-white/80 leading-relaxed">{rail.value}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Interactive Sandbox Section */}
-        <FrictionSandbox />
+        <div className="space-y-4">
+          <div className="font-mono text-[10px] uppercase tracking-wider text-white/40 mb-2">
+            // INTERACTIVE STRESS TEST
+          </div>
+          <FrictionSandbox />
+        </div>
 
         {/* Featured Case Study Cards Section */}
-        <div className="space-y-6 animate-[fadeSlideUp_0.8s_ease_1s_both]">
-          <div className="flex items-end justify-between gap-4 border-b border-white/5 pb-4">
+        <div className="space-y-8 animate-[fadeSlideUp_0.8s_ease_1s_both]">
+          <div className="flex items-end justify-between gap-4 border-b border-white/10 pb-4">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">
-                Selected Work
+              <span className="font-mono text-[10px] uppercase tracking-wider text-white/40">
+                // Selected Works
               </span>
-              <h2 className="text-xl md:text-2xl font-light tracking-tight text-white mt-1">
+              <h2 className="text-2xl md:text-3xl font-bricolage font-bold tracking-tight text-white mt-1">
                 Featured Case Studies
               </h2>
             </div>
             <Link
               to="/companies"
-              className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-xs font-medium text-black transition-transform hover:scale-105"
+              className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-xs font-mono font-medium text-black transition-transform hover:scale-105"
             >
               All Experience
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {WORK_ITEMS.slice(0, 3).map((project) => (
+          {/* Featured cards mapped with techy structure */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {WORK_ITEMS.slice(0, 3).map((project, index) => (
               <Link
                 key={project.slug}
                 to={`/work/${project.slug}`}
-                className="glass-card bg-white/[0.02] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 p-5 rounded-2xl transition-all duration-300 hover:-translate-y-1 block shadow-[0_8px_32px_rgba(0,0,0,0.3)] group"
+                className="glass-card bg-white/[0.01] hover:bg-white/[0.05] border border-white/10 hover:border-white/20 p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1 block shadow-[0_8px_32px_rgba(0,0,0,0.3)] group relative overflow-hidden"
               >
-                <div className="flex flex-col h-full justify-between min-h-[120px]">
+                {/* Floating Index Identifier */}
+                <div className="absolute top-4 right-4 font-mono text-[10px] text-white/20 group-hover:text-white/40 transition-colors">
+                  [0{index + 1}]
+                </div>
+
+                <div className="flex flex-col h-full justify-between min-h-[140px]">
                   <div>
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-white/40 block mb-1">
+                    <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-white/40 block mb-1">
                       {project.productType}
                     </span>
-                    <h3 className="text-base font-semibold text-white group-hover:text-white/90 transition-colors">
+                    <h3 className="text-lg font-bricolage font-bold text-white group-hover:text-white/95 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="mt-1.5 text-[11px] text-white/60 line-clamp-2 leading-relaxed">
+                    <p className="mt-2 text-xs text-white/60 line-clamp-2 leading-relaxed font-geist">
                       {project.caseStudy.overview}
                     </p>
                   </div>
-                  <div className="mt-3 flex items-center gap-1 text-[11px] font-medium text-white/80 group-hover:text-white transition-colors">
-                    Read Case Study
+                  <div className="mt-4 flex items-center gap-1.5 text-xs font-mono text-white/80 group-hover:text-white transition-colors">
+                    <span>EXPLORE_CASE_STUDY</span>
                     <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>

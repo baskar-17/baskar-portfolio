@@ -96,10 +96,10 @@ export default function CaseStudyShell({
         <div className="grid gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
           <aside className="hidden lg:block reveal reveal-delay-2">
             <div className="sticky top-32 rounded-3xl border border-[color:var(--border)] glass-card p-5 text-sm text-[var(--muted)] shadow-[var(--shadow-soft)]">
-              <div className="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--ink)] opacity-60">
-                Contents
+              <div className="mb-4 text-[10px] font-mono uppercase tracking-[0.25em] text-white/50">
+                // Contents
               </div>
-              <nav className="space-y-1">
+              <nav className="space-y-1 font-mono">
                 {navItems.map((item) => {
                   const isActive = activeId === item.id;
                   return (
@@ -108,9 +108,9 @@ export default function CaseStudyShell({
                       href={`#${item.id}`}
                       whileHover={{ x: 4 }}
                       transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                      className={`block rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all duration-300 ${isActive
-                        ? "bg-[color:var(--ink)] text-white shadow-md shadow-[rgba(0,0,0,0.1)]"
-                        : "text-[var(--muted)] hover:bg-[color:var(--surface-muted)] hover:text-[var(--ink)]"
+                      className={`block rounded-xl px-3 py-2 text-[10px] uppercase tracking-widest font-semibold transition-all duration-300 ${isActive
+                        ? "bg-white text-black shadow-md"
+                        : "text-white/60 hover:bg-[color:var(--surface-muted)] hover:text-white"
                         }`}
                     >
                       {item.label}
