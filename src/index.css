@@ -322,3 +322,72 @@ a {
     transform: translateY(0);
   }
 }
+
+/* System Blueprint Mode styling */
+.blueprint-active {
+  background-image: 
+    linear-gradient(rgba(239, 68, 68, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(239, 68, 68, 0.04) 1px, transparent 1px) !important;
+  background-size: 20px 20px !important;
+  background-color: #020204 !important;
+}
+
+.blueprint-active::after {
+  content: "CANVAS_W: 100vw / CANVAS_H: 100vh / FPS: 60 / COORDINATE_SYSTEM: GRID_20PX";
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  font-family: monospace;
+  font-size: 10px;
+  color: rgba(239, 68, 68, 0.5);
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Red outlining for standard containers */
+.blueprint-active main,
+.blueprint-active section,
+.blueprint-active nav,
+.blueprint-active header,
+.blueprint-active footer {
+  outline: 1px dashed rgba(239, 68, 68, 0.3) !important;
+  outline-offset: -1px;
+}
+
+/* Dimension tags */
+.blueprint-active .glass-card {
+  outline: 1px dashed rgba(239, 68, 68, 0.4) !important;
+  position: relative;
+}
+
+/* Adding label tags dynamically */
+.blueprint-active .glass-card::before {
+  content: "w: auto / p: 5 / rounded: 2xl";
+  position: absolute;
+  bottom: 2px;
+  left: 6px;
+  font-size: 7px;
+  font-family: monospace;
+  color: rgba(239, 68, 68, 0.6);
+  pointer-events: none;
+  z-index: 40;
+}
+
+.blueprint-active h1,
+.blueprint-active h2,
+.blueprint-active h3 {
+  outline: 1px dashed rgba(59, 130, 246, 0.3) !important;
+  position: relative;
+}
+
+.blueprint-active h1::before {
+  content: "h1 / font-geist / tracking-tight";
+  position: absolute;
+  top: -12px;
+  left: 2px;
+  font-size: 7px;
+  font-family: monospace;
+  color: rgba(59, 130, 246, 0.6);
+  pointer-events: none;
+  z-index: 40;
+}

@@ -9,10 +9,13 @@ import CaseStudyDemo from "./pages/case-studies/CaseStudyDemo"
 import CustomCursor from "./components/CustomCursor"
 import InteractiveCanvas from "./components/InteractiveCanvas"
 import Navbar from "./components/Navbar"
+import { BlueprintProvider, useBlueprint } from "./context/BlueprintContext"
 
-export default function App() {
+function AppContent() {
+  const { blueprintMode } = useBlueprint()
+
   return (
-    <div className="relative min-h-screen w-full bg-black font-geist text-white overflow-x-hidden selection:bg-white/10 selection:text-white">
+    <div className={`relative min-h-screen w-full bg-black font-geist text-white overflow-x-hidden selection:bg-white/10 selection:text-white transition-colors duration-500 ${blueprintMode ? "blueprint-active" : ""}`}>
       {/* Global 3D Interactive Grid Canvas Background */}
       <InteractiveCanvas />
 
@@ -38,5 +41,13 @@ export default function App() {
         </Routes>
       </div>
     </div>
+  )
+}
+
+export default function App() {
+  return (
+    <BlueprintProvider>
+      <AppContent />
+    </BlueprintProvider>
   )
 }

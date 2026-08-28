@@ -1,9 +1,11 @@
 import { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { Menu, X } from "lucide-react"
+import { useBlueprint } from "../context/BlueprintContext"
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { blueprintMode, setBlueprintMode } = useBlueprint()
   const location = useLocation()
 
   const navItems = [
@@ -46,8 +48,24 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right CTA Button (Desktop) */}
-        <div className="hidden md:block">
+        {/* Right CTA Button & Blueprint Toggle (Desktop) */}
+        <div className="hidden items-center gap-4 md:flex">
+          {/* Blueprint Mode Toggle */}
+          <button
+            onClick={() => setBlueprintMode(!blueprintMode)}
+            className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider border transition-all duration-300 ${
+              blueprintMode
+                ? "bg-red-500/10 border-red-500/30 text-red-400"
+                : "bg-white/5 border-white/10 text-white/75 hover:bg-white/10"
+            }`}
+          >
+            <span className="relative flex h-2 w-2">
+              <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${blueprintMode ? "bg-red-400" : "bg-white/40"}`}></span>
+              <span className={`relative inline-flex rounded-full h-2 w-2 ${blueprintMode ? "bg-red-500" : "bg-white/60"}`}></span>
+            </span>
+            {blueprintMode ? "Blueprint ON" : "Blueprint Mode"}
+          </button>
+
           <Link
             to="/contact"
             className="rounded-full bg-white px-5 py-2 text-sm font-medium text-black transition-transform hover:scale-105 inline-block"
@@ -88,7 +106,7 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       <div
         className={`absolute left-0 right-0 top-16 z-40 overflow-hidden bg-black/95 backdrop-blur-xl rounded-2xl border border-white/10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden ${
-          mobileMenuOpen ? "max-h-[300px] opacity-100 py-6 px-8" : "max-h-0 opacity-0 pointer-events-none"
+          mobileMenuOpen ? "max-h-[350px] opacity-100 py-6 px-8" : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
         <div className="flex flex-col gap-5">
@@ -107,10 +125,27 @@ export default function Navbar() {
               </Link>
             )
           })}
+          
+          {/* Blueprint Mode Toggle (Mobile) */}
+          <button
+            onClick={() => setBlueprintMode(!blueprintMode)}
+            className={`flex items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold uppercase tracking-wider border transition-all duration-300 w-full ${
+              blueprintMode
+                ? "bg-red-500/10 border-red-500/30 text-red-400"
+                : "bg-white/5 border-white/10 text-white/75"
+            }`}
+          >
+            <span className="relative flex h-2 w-2">
+              <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${blueprintMode ? "bg-red-400" : "bg-white/40"}`}></span>
+              <span className={`relative inline-flex rounded-full h-2 w-2 ${blueprintMode ? "bg-red-500" : "bg-white/60"}`}></span>
+            </span>
+            {blueprintMode ? "Blueprint Mode: ON" : "Enable Blueprint Mode"}
+          </button>
+
           <Link
             to="/contact"
             onClick={handleLinkClick}
-            className="mt-4 rounded-xl bg-white py-3 text-center text-base font-medium text-black transition-transform hover:scale-105 block"
+            className="mt-2 rounded-xl bg-white py-3 text-center text-base font-medium text-black transition-transform hover:scale-105 block"
           >
             Let's Talk
           </Link>
